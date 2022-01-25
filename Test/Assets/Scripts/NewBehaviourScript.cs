@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class NewBehaviourScript : MonoBehaviour
 {
-    public Sprite sprite;
+    public Sprite Texture2D;
     void Start()
     {
         
