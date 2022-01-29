@@ -15,16 +15,26 @@ public class AnimationController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float inputX = Input.GetAxis("Horizontal");
-        float inputZ = Input.GetAxis("Vertical");
+        //float inputX = Input.GetAxis("Horizontal");
+        //float inputZ = Input.GetAxis("Vertical");
 
 
-        Vector3 velocity = new Vector3(inputX, 0, inputZ);
-        velocity *= stats.MoveSpeed;
-        if (velocity.magnitude != 0)
+        //Vector3 velocity = new Vector3(inputX, 0, inputZ);
+        //velocity *= stats.MoveSpeed;
+        //if (velocity.magnitude != 0)
+        //{
+        //    transform.LookAt(transform.position + velocity);
+        //}
+        //animator.SetFloat("Velocity", velocity.magnitude);
+
+    }
+
+    private void LateUpdate()
+    {
+        if (stats.Velocity.magnitude != 0)
         {
-            transform.LookAt(transform.position + velocity);
+            transform.LookAt(transform.position + stats.Velocity);
         }
-        animator.SetFloat("Velocity", velocity.magnitude);
+        animator.SetFloat("Velocity", stats.Velocity.magnitude);
     }
 }
