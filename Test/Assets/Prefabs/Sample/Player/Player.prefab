@@ -98,7 +98,8 @@ MonoBehaviour:
   AttackDamage: 0
   AttackSpeed: 0
   MoveSpeed: 4
-  JumpPower: 15
+  JumpPower: 6
+  Velocity: {x: 0, y: 0, z: 0}
 --- !u!114 &2819270753405538169
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -125,7 +126,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!136 &4415449161363721872
 CapsuleCollider:
@@ -137,10 +138,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 1
+  m_Radius: 0.2
+  m_Height: 1.6
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.76, z: 0}
 --- !u!1001 &2744436995153888244
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -192,24 +193,23 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3014561919526957722, guid: a7fd6aa28c1010a4aae3b591801b0704, type: 3}
-      propertyPath: m_Mass
-      value: 2
+    - target: {fileID: 1535420600642544733, guid: a7fd6aa28c1010a4aae3b591801b0704, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 3014561919526957722, guid: a7fd6aa28c1010a4aae3b591801b0704, type: 3}
-      propertyPath: m_AngularDrag
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3014561919526957722, guid: a7fd6aa28c1010a4aae3b591801b0704, type: 3}
-      propertyPath: m_Constraints
-      value: 112
-      objectReference: {fileID: 0}
+    - target: {fileID: 2909105739497489405, guid: a7fd6aa28c1010a4aae3b591801b0704, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: b8f95c6b58e6e5043835029ed8a2c31b, type: 2}
     - target: {fileID: 3845187553232478778, guid: a7fd6aa28c1010a4aae3b591801b0704, type: 3}
       propertyPath: m_Name
       value: Female
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 3126123487621407914, guid: a7fd6aa28c1010a4aae3b591801b0704, type: 3}
+    - target: {fileID: 5144684827492993361, guid: a7fd6aa28c1010a4aae3b591801b0704, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a7fd6aa28c1010a4aae3b591801b0704, type: 3}
 --- !u!4 &2705825021844628323 stripped
 Transform:
