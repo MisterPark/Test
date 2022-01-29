@@ -13,7 +13,7 @@ public class CameraMove : MonoBehaviour
     public float Pitch;
     public float Yaw;
 
-    public float delayTime;
+    //public float delayTime;
     void Start()
     {
         transform.Rotate(Pitch, Yaw, 0);
@@ -23,6 +23,7 @@ public class CameraMove : MonoBehaviour
     void Update()
     {
         Vector3 FixedPos = new Vector3(target.transform.position.x + offsetX, target.transform.position.y + offsetY, target.transform.position.z + offsetZ);
-        transform.position = Vector3.Lerp(transform.position, FixedPos, Time.deltaTime * delayTime);
+        transform.position = FixedPos;
+        //transform.position = Vector3.Lerp(transform.position, FixedPos, Time.deltaTime * delayTime);
     }
 }
