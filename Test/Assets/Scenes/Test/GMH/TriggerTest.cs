@@ -4,10 +4,7 @@ using UnityEngine;
 
 public class TriggerTest : MonoBehaviour
 {
-    public GameObject target;
-
-    private bool isTrigger;
-    public bool IsTrigger { get { return isTrigger; } private set { isTrigger = value; } }
+    GameObject player;
 
     MeshRenderer mesh;
     Material mat;
@@ -18,12 +15,12 @@ public class TriggerTest : MonoBehaviour
         mesh = GetComponent<MeshRenderer>();
         mat = mesh.material;
         direction = Vector3.forward;
-        isTrigger = false;
+        player = GameObject.Find("Player");
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.name == "PlayerSample")
+        if (other.gameObject.name == "Player")
         {
             mat.color = new Color(0, 0, 0, 0);
         }
@@ -31,17 +28,13 @@ public class TriggerTest : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        direction = target.transform.position - transform.position;
-        direction.Normalize();
-        transform.forward = direction;
-        isTrigger = true;
+      
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.name == "PlayerSample")
+        if (other.gameObject.name == "Player")
         {
             mat.color = new Color(1, 1, 1, 0);
-            isTrigger = false;
         }
     }
 
