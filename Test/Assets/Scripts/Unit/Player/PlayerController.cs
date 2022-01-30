@@ -6,17 +6,12 @@ public class PlayerController : MonoBehaviour
 {
     public UnitStat stats { get; set; }
     private Rigidbody rigidbody;
-    private GameObject mainCamera;
-    //private AnimationController aniController;
-
-    // Start is called before the first frame update
+    private Vector3 direction = Vector3.forward;// 캐릭터가 바라보는 방향, 스킬 사용시 사용 
     void Start()
     {
         Physics.gravity = new Vector3(0f, -15f, 0f);
         stats = GetComponent<UnitStat>();
         rigidbody = GetComponent<Rigidbody>();
-        mainCamera = GameObject.Find("Main Camera");
-        //aniController = GetComponent<AnimationController>();
         
     }
 
@@ -25,67 +20,61 @@ public class PlayerController : MonoBehaviour
     {
         Jump();
         Move();
-
         Test();
     }
 
     void Jump()
     {
-        if (!stats.JumpCheck)
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (!stats.JumpCheck)
             {
                 GetComponent<Rigidbody>().AddForce(Vector3.up * stats.JumpPower, ForceMode.Impulse);
                 stats.JumpCheck = true;
             }
         }
+        
     }
 
     void Move()
     {
-        float inputX = Input.GetAxis("Horizontal");
-        float inputZ = Input.GetAxis("Vertical");
+        
+        Vector3 moveDirection = Vector3.zero;
+        Vector3 forward = transform.position - Camera.main.transform.position;
+        forward.y = 0f;
+        forward.Normalize();
+        Vector3 right = Vector3.Cross(Vector3.up, forward);
 
-        // Rotate
-        Vector3 velocity = new Vector3(inputX, 0, inputZ);
-        velocity *= stats.MoveSpeed;
-        //if (velocity.magnitude != 0)
-        if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
-        {
-            //transform.LookAt(transform.position + velocity);
-            Vector3 test = transform.position;
-            test.x += mainCamera.transform.forward.x;
-            test.z += mainCamera.transform.forward.z;
-            transform.LookAt(test);
-        }
-
-        Vector3 direction = Vector3.zero;
         if (Input.GetKey(KeyCode.W))
         {
-            direction += transform.forward * velocity.z;
+            direction = forward;
+            moveDirection = forward;
         }
         if (Input.GetKey(KeyCode.A))
         {
-            direction += transform.right * velocity.x;
-
+            direction = -right;
+            moveDirection = -right;
         }
         if (Input.GetKey(KeyCode.S))
         {
-            direction += transform.forward * velocity.z;
+            direction = -forward;
+            moveDirection = -forward;
         }
         if (Input.GetKey(KeyCode.D))
         {
-            direction += transform.right * velocity.x;
+            direction = right;
+            moveDirection = right;
         }
         // Move
         direction.Normalize();
-        velocity = stats.MoveSpeed * direction;
-        transform.position += velocity * Time.deltaTime;
-        // 애니메이션 재조정
-        transform.LookAt((velocity * Time.deltaTime) + transform.position);
+        transform.position += stats.MoveSpeed * moveDirection * Time.deltaTime;
+        // Rotate
+        transform.LookAt(transform.position + direction);
 
+        float inputX = Input.GetAxis("Horizontal");
+        float inputZ = Input.GetAxis("Vertical");
+        Vector3 velocity = new Vector3(inputX, 0, inputZ);
         stats.Velocity = velocity;
-        
         
     }
 

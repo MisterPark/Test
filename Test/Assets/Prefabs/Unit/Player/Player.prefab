@@ -139,11 +139,11 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 2684222080821314697}
+  - {fileID: 5748967735892067829}
   m_Father: {fileID: 7063020503699702328}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &2507094042926392162
+--- !u!1001 &5206960304641679902
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -156,7 +156,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0e1b9270c2d62dc4a8314244b6da29e4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0e1b9270c2d62dc4a8314244b6da29e4, type: 3}
       propertyPath: m_LocalPosition.y
@@ -172,15 +172,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0e1b9270c2d62dc4a8314244b6da29e4, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: 3.219738e-19
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0e1b9270c2d62dc4a8314244b6da29e4, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0.000000001674724
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0e1b9270c2d62dc4a8314244b6da29e4, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: 0.000000053457654
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0e1b9270c2d62dc4a8314244b6da29e4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -201,21 +201,11 @@ PrefabInstance:
     - target: {fileID: 5866666021909216657, guid: 0e1b9270c2d62dc4a8314244b6da29e4, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: b8f95c6b58e6e5043835029ed8a2c31b, type: 2}
-    - target: {fileID: 5866666021909216657, guid: 0e1b9270c2d62dc4a8314244b6da29e4, type: 3}
-      propertyPath: m_WarningMessage
-      value: "\nBinding warning: Some generic clip(s) animate transforms that are
-        already bound by a Humanoid avatar. These transforms can only be changed
-        by Humanoid clips.\n\tTransform 'J_Bip_R_Ring2'\n\tTransform 'J_Bip_R_UpperLeg'\n\tTransform
-        'J_Bip_C_UpperChest'\n\tTransform 'J_Bip_R_LowerArm'\n\tTransform 'J_Bip_L_Middle2'\n\tTransform
-        'J_Bip_C_Neck'\n\tTransform 'J_Bip_L_UpperLeg'\n\tTransform 'J_Bip_L_Index1'\n\tTransform
-        'J_Bip_R_Little2'\n\tTransform 'J_Bip_R_UpperArm'\n\tand more ...\n\tFrom
-        animation clip 'mixamo.com'"
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 9100000, guid: c8840ae19cc92ec48b8fe0fd50bbfa4e, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0e1b9270c2d62dc4a8314244b6da29e4, type: 3}
---- !u!4 &2684222080821314697 stripped
+--- !u!4 &5748967735892067829 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 0e1b9270c2d62dc4a8314244b6da29e4, type: 3}
-  m_PrefabInstance: {fileID: 2507094042926392162}
+  m_PrefabInstance: {fileID: 5206960304641679902}
   m_PrefabAsset: {fileID: 0}
