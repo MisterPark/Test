@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    UnitStat stats;
+    public UnitStat stats { get; set; }
     private Rigidbody rigidbody;
     private GameObject mainCamera;
+    //private AnimationController aniController;
 
     // Start is called before the first frame update
     void Start()
@@ -15,6 +16,8 @@ public class PlayerController : MonoBehaviour
         stats = GetComponent<UnitStat>();
         rigidbody = GetComponent<Rigidbody>();
         mainCamera = GameObject.Find("Main Camera");
+        //aniController = GetComponent<AnimationController>();
+        
     }
 
     // Update is called once per frame
@@ -22,16 +25,18 @@ public class PlayerController : MonoBehaviour
     {
         Jump();
         Move();
+
+        Test();
     }
 
     void Jump()
     {
-        float fallSpeed = rigidbody.velocity.y;
-        if (fallSpeed < 1f && 0f <= fallSpeed)
+        if (!stats.JumpCheck)
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 GetComponent<Rigidbody>().AddForce(Vector3.up * stats.JumpPower, ForceMode.Impulse);
+                stats.JumpCheck = true;
             }
         }
     }
@@ -74,7 +79,6 @@ public class PlayerController : MonoBehaviour
         }
         // Move
         direction.Normalize();
-        Debug.Log(direction);
         velocity = stats.MoveSpeed * direction;
         transform.position += velocity * Time.deltaTime;
         // 애니메이션 재조정
@@ -82,6 +86,26 @@ public class PlayerController : MonoBehaviour
 
         stats.Velocity = velocity;
         
+        
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.CompareTag("Terrain"))
+        {
+            stats.JumpCheck = false;
+        }
+    }
+
+    void Test()
+    {
+        if(Input.GetKeyDown(KeyCode.Q))
+        {
+            stats.Hp -= 10;
+        }
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            stats.Mp -= 10;
+        }
+    }
 }
