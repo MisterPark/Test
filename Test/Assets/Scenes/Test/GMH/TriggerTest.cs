@@ -23,7 +23,7 @@ public class TriggerTest : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.name == "PlayerSample")
+        if (other.gameObject.name == "Player")
         {
             mat.color = new Color(0, 0, 0, 0);
         }
@@ -38,7 +38,7 @@ public class TriggerTest : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.name == "PlayerSample")
+        if (other.gameObject.name == "Player")
         {
             mat.color = new Color(1, 1, 1, 0);
             isTrigger = false;
