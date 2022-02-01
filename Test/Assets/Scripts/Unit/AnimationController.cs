@@ -18,9 +18,23 @@ public class AnimationController : MonoBehaviour
         float inputZ = Input.GetAxis("Vertical");
 
         Vector3 velocity = new Vector3(inputX, 0, inputZ);
-        animator.SetFloat("Velocity", velocity.magnitude);
+        animator.SetFloat("Velocity", velocity.magnitude * 100f);
         animator.SetBool("Jump", stats.JumpCheck);
-        Debug.Log(stats.JumpCheck);
+
+        Test();
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Terrain"))
+        {
+            animator.SetBool("ToLand", true);
+        }
+    }
+
+    void Test()
+    {
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("JumpEnd") && animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.8f)
+            animator.SetBool("MovePossible", true);
+    }
 }

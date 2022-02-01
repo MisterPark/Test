@@ -15,13 +15,17 @@ public class CameraController : MonoBehaviour
     void Start()
     {
         player = GameObject.Find("Player");
-        Cursor.lockState = CursorLockMode.Locked;
+        Cursor_Visible(false);
     }
 
     private void LateUpdate()
     {
         Move();
         Zoom();
+        if (Input.GetKeyDown(KeyCode.T))
+            Cursor_Visible(true);
+        if (Input.GetKeyDown(KeyCode.Y))
+            Cursor_Visible(false);
     }
 
     void Move()
@@ -48,5 +52,20 @@ public class CameraController : MonoBehaviour
         zoom = (zoom > maxZoom) ? maxZoom : zoom;
 
         this.zoom = zoom;
+    }
+
+    public void Cursor_Visible(bool _visible)
+    {
+        //Cursor.lockState = CursorLockMode.None;
+        if (_visible)
+        {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.Confined;
+        }
+        else
+        {
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+        }
     }
 }

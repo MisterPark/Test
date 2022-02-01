@@ -14,7 +14,8 @@ public class UnitStat : MonoBehaviour
     [SerializeField] public float AttackDamage;
     [SerializeField] public float AttackSpeed;
 
-    [SerializeField] public float MoveSpeed;
+    [SerializeField] public float RawMoveSpeed;
+    [HideInInspector] public float MoveSpeed;
     [SerializeField] public float JumpPower;
     public Vector3 Velocity;
 
@@ -22,5 +23,6 @@ public class UnitStat : MonoBehaviour
     {
         Hp = MaxHp;
         Mp = MaxMp;
+        MoveSpeed = RawMoveSpeed;
     }
 }
