@@ -375,17 +375,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5acb3a26f5ae08541b52a758aae38443, type: 3}
---- !u!1001 &4905213095322640381
+--- !u!1001 &1875748271
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1812772958846492559, guid: b723125238dee4f40bb1954a0df3e5cd, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: b8f95c6b58e6e5043835029ed8a2c31b, type: 2}
     - target: {fileID: 7063020503699702328, guid: b723125238dee4f40bb1954a0df3e5cd, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -433,18 +429,6 @@ PrefabInstance:
     - target: {fileID: 7063020503699702334, guid: b723125238dee4f40bb1954a0df3e5cd, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 8953041446812488606, guid: b723125238dee4f40bb1954a0df3e5cd, type: 3}
-      propertyPath: JumpPower
-      value: 7.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8953041446812488606, guid: b723125238dee4f40bb1954a0df3e5cd, type: 3}
-      propertyPath: MoveSpeed
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8953041446812488606, guid: b723125238dee4f40bb1954a0df3e5cd, type: 3}
-      propertyPath: RawMoveSpeed
-      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b723125238dee4f40bb1954a0df3e5cd, type: 3}

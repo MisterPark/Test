@@ -14,11 +14,17 @@ public class AnimationController : MonoBehaviour
 
     void Update()
     {
+        if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
+            animator.SetFloat("Velocity", 1f);
+        else
+            animator.SetFloat("Velocity", 0f);
+        /*
         float inputX = Input.GetAxis("Horizontal");
         float inputZ = Input.GetAxis("Vertical");
-
         Vector3 velocity = new Vector3(inputX, 0, inputZ);
         animator.SetFloat("Velocity", velocity.magnitude * 100f);
+        */
+
         animator.SetBool("Jump", stats.JumpCheck);
 
         Test();

@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Attack();
         Jump();
         Move();
         Test();
@@ -112,5 +113,19 @@ public class PlayerController : MonoBehaviour
                 stats.MoveSpeed = stats.RawMoveSpeed * 2f;
             }
         }
+    }
+
+    bool Attack()
+    {
+        if (Input.GetMouseButtonDown(1))
+        {
+            if(animator.GetBool("MovePossible") && !animator.GetBool("Jump"))
+            {
+                animator.SetInteger("Attack", 1);
+                return true;
+            }
+        }
+
+        return false;
     }
 }

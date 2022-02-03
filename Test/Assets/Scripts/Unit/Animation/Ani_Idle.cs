@@ -8,6 +8,8 @@ public class Ani_Idle : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         animator.SetBool("Run", false);
+        animator.SetBool("MovePossible", true);
+        animator.SetInteger("Attack", 0);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
