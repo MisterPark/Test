@@ -5,8 +5,12 @@ using UnityEngine;
 public class UnitController : MonoBehaviour
 {
     // Start is called before the first frame update
+    public UnitStat stats { get; set; }
+    private Rigidbody rigidbody;
     protected virtual void Start()
     {
+        stats = GetComponent<UnitStat>();
+        rigidbody = GetComponent<Rigidbody>();
         
     }
 
@@ -15,4 +19,6 @@ public class UnitController : MonoBehaviour
     {
         
     }
+
+    
 }

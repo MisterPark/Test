@@ -14,10 +14,10 @@ public class AnimationController : UnitController
 
     protected override void Update()
     {
-        if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
-            animator.SetFloat("Velocity", 1f);
-        else
-            animator.SetFloat("Velocity", 0f);
+        //if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
+        //    animator.SetFloat("Velocity", 1f);
+        //else
+        //    animator.SetFloat("Velocity", 0f);
         /*
         float inputX = Input.GetAxis("Horizontal");
         float inputZ = Input.GetAxis("Vertical");
