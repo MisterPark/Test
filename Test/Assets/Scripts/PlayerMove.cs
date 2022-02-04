@@ -13,7 +13,7 @@ public class PlayerMove : MonoBehaviour
     float moveAccelTime = 1f;
     float moveAccelDelay = 0f;
     
-    private Rigidbody rigidbody;
+    private Rigidbody rigidbody_in;
     private Animator animator;
     // Start is called before the first frame update
     void Start()
@@ -21,7 +21,7 @@ public class PlayerMove : MonoBehaviour
         playerSpeedValue = new PlayerSpeedValue();
         playerSpeedValue.speed = 4f;
         playerSpeedValue.jumpPower = 15f;
-        rigidbody = GetComponent<Rigidbody>();
+        rigidbody_in = GetComponent<Rigidbody>();
         animator = (transform.Find("Mesh").gameObject).transform.GetChild(0).gameObject.GetComponent<Animator>();
     }
 
@@ -38,7 +38,7 @@ public class PlayerMove : MonoBehaviour
         float inputZ = Input.GetAxis("Vertical");
         Vector3 velocity = (new Vector3(inputX, 0, inputZ).normalized) * playerSpeedValue.speed;
 
-        float fallSpeed = rigidbody.velocity.y;
+        float fallSpeed = rigidbody_in.velocity.y;
         float velocityMag = velocity.magnitude;
         Jump(fallSpeed);
 
@@ -71,7 +71,7 @@ public class PlayerMove : MonoBehaviour
         velocity.y = fallSpeed;
         velocity.x *= moveAccelTime;
         velocity.z *= moveAccelTime;
-        rigidbody.velocity = velocity;
+        rigidbody_in.velocity = velocity;
     }
     void Jump(float fallSpeed)
     {
@@ -79,7 +79,7 @@ public class PlayerMove : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                rigidbody.AddForce(Vector3.up * playerSpeedValue.jumpPower, ForceMode.Impulse);
+                rigidbody_in.AddForce(Vector3.up * playerSpeedValue.jumpPower, ForceMode.Impulse);
             }
         }
     }
