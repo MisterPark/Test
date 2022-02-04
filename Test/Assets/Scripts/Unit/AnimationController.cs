@@ -38,6 +38,6 @@ public class AnimationController : MonoBehaviour
         animator.SetFloat("Velocity", stats.Velocity.magnitude);
 
         animator.SetBool("Jump", stats.JumpCheck);
-        Debug.Log(stats.JumpCheck);
+       //Debug.Log(stats.JumpCheck);
     }
 }
