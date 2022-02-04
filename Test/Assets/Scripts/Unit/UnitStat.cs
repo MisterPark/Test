@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class UnitStat : MonoBehaviour
 {
-    public enum State { Idle, Run, Jump }
-    State state { get; set; }
+    public enum Team { None, Player, Enemy, Natural}
+    //public enum State { Idle, Run, Jump }
+    //public State state { get; set; }
+    [SerializeField] public Team team;
     public bool JumpCheck;
     [SerializeField] public float MaxHp;
     [SerializeField] public float Hp;

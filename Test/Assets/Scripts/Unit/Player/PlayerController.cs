@@ -2,22 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : UnitController
 {
-    public UnitStat stats { get; set; }
-    private Rigidbody rigidbody;
     private Vector3 direction = Vector3.forward;// 캐릭터가 바라보는 방향, 스킬 사용시 사용 
     Animator animator;
-    void Start()
+   protected override void Start()
     {
+        base.Start();
         Physics.gravity = new Vector3(0f, -10f, 0f);
-        stats = GetComponent<UnitStat>();
-        rigidbody = GetComponent<Rigidbody>();
         animator = (transform.Find("Mesh").gameObject).transform.GetChild(0).gameObject.GetComponent<Animator>();
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
         Attack();
         Jump();
@@ -27,6 +24,9 @@ public class PlayerController : MonoBehaviour
 
     void Jump()
     {
+        if (!animator.GetBool("MovePossible"))
+            return;
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
             if (!stats.JumpCheck)
@@ -52,26 +52,27 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKey(KeyCode.W))
         {
-            direction = forward;
-            moveDirection = forward;
+            direction += forward;
+            moveDirection += forward;
         }
         if (Input.GetKey(KeyCode.A))
         {
-            direction = -right;
-            moveDirection = -right;
+            direction += -right;
+            moveDirection += -right;
         }
         if (Input.GetKey(KeyCode.S))
         {
-            direction = -forward;
-            moveDirection = -forward;
+            direction += -forward;
+            moveDirection += -forward;
         }
         if (Input.GetKey(KeyCode.D))
         {
-            direction = right;
-            moveDirection = right;
+            direction += right;
+            moveDirection += right;
         }
         // Move
         direction.Normalize();
+        moveDirection.Normalize();
         transform.position += stats.MoveSpeed * moveDirection * Time.deltaTime;
         // Rotate
         transform.LookAt(transform.position + direction);
@@ -81,6 +82,10 @@ public class PlayerController : MonoBehaviour
         Vector3 velocity = new Vector3(inputX, 0, inputZ);
         stats.Velocity = velocity;
         
+        if(moveDirection == Vector3.zero)
+            animator.SetFloat("Velocity", 0f);
+        else
+            animator.SetFloat("Velocity", 1f);
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -122,6 +127,9 @@ public class PlayerController : MonoBehaviour
             if(animator.GetBool("MovePossible") && !animator.GetBool("Jump"))
             {
                 animator.SetInteger("Attack", 1);
+                Vector3 tempPos = gameObject.transform.position + (gameObject.transform.forward * 1.2f);
+                tempPos.y += 0.7f;
+                DamageObjectController.Create_DamageObject(UnitStat.Team.Player, tempPos, 1.5f, 1.2f, 15f);
                 return true;
             }
         }
