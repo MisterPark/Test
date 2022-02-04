@@ -44,7 +44,7 @@ public class PlayerControllerSample : MonoBehaviour
         }
         // Move
         direction.Normalize();
-        Debug.Log(direction);
+        //Debug.Log(direction);
         transform.position += stats.MoveSpeed * direction * Time.deltaTime;
     }
 }
