@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : UnitController
 {
     public UnitStat stats { get; set; }
     private Rigidbody rigidbody;
     private Vector3 direction = Vector3.forward;// 캐릭터가 바라보는 방향, 스킬 사용시 사용 
     Animator animator;
-    void Start()
+   protected override void Start()
     {
         Physics.gravity = new Vector3(0f, -10f, 0f);
         stats = GetComponent<UnitStat>();
@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
         Attack();
         Jump();

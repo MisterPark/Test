@@ -2,17 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AnimationController : MonoBehaviour
+public class AnimationController : UnitController
 {
     UnitStat stats;
     Animator animator;
-    void Start()
+    protected override void Start()
     {
         stats = GetComponent<UnitStat>();
         animator = (transform.Find("Mesh").gameObject).transform.GetChild(0).gameObject.GetComponent<Animator>();
     }
 
-    void Update()
+    protected override void Update()
     {
         if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
             animator.SetFloat("Velocity", 1f);
