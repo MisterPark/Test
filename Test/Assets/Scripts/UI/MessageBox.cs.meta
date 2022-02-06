@@ -1,13 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
-<<<<<<< HEAD:Test/Assets/Scripts/UI/MessageBox.cs.meta
 guid: a0ab2be363bfa8642b246c57c58d160d
-=======
-guid: 4224bd0f26220c7448d351c87642d1f1
->>>>>>> 85a9b740a8fbc9e0f2a1c9c7aaf0f9a80eb17e92:Test/Assets/Scenes/Test/GMH/FollowToPlayer.cs.meta
-=======
-guid: a0ab2be363bfa8642b246c57c58d160d
->>>>>>> 85a9b740a8fbc9e0f2a1c9c7aaf0f9a80eb17e92
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

@@ -1,13 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
 guid: 9315f7a1f87b6f54b88eb6942e2821dd
-=======
-<<<<<<< HEAD:Test/Assets/Prefabs/UI/UI_ItemMessage.prefab.meta
-guid: 14d16ad208e237b46b9c5682a896b0e1
-=======
-guid: 9315f7a1f87b6f54b88eb6942e2821dd
->>>>>>> 85a9b740a8fbc9e0f2a1c9c7aaf0f9a80eb17e92:Test/Assets/Prefabs/UI/CharacterTextUI.prefab.meta
->>>>>>> 85a9b740a8fbc9e0f2a1c9c7aaf0f9a80eb17e92
 PrefabImporter:
   externalObjects: {}
   userData: 

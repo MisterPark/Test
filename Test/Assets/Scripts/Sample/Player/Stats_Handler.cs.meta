@@ -1,13 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
-<<<<<<< HEAD:Test/Assets/Scripts/Sample/Player/Stats_Handler.cs.meta
 guid: 974001407f7e0354aa0583a1886dc794
-=======
-guid: 8e223527434209d4680aa993f01433a2
->>>>>>> 85a9b740a8fbc9e0f2a1c9c7aaf0f9a80eb17e92:Test/Assets/Scenes/Test/GMH/DirctionToTarget.cs.meta
-=======
-guid: 974001407f7e0354aa0583a1886dc794
->>>>>>> 85a9b740a8fbc9e0f2a1c9c7aaf0f9a80eb17e92
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
