@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+<<<<<<< HEAD
+<<<<<<< HEAD:Test/Assets/Scripts/Sample/Player/Object_stat.cs.meta
+guid: 46de67292e6be3945aea6e09812d98be
+=======
+guid: 6204051f2a77a8f4d86dbd80aa9b3c77
+>>>>>>> 85a9b740a8fbc9e0f2a1c9c7aaf0f9a80eb17e92:Test/Assets/Scenes/Test/GMH/ColliderTest.cs.meta
+=======
+guid: 46de67292e6be3945aea6e09812d98be
+>>>>>>> 85a9b740a8fbc9e0f2a1c9c7aaf0f9a80eb17e92
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
