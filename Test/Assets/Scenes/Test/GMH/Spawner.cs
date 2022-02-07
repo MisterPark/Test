@@ -10,7 +10,7 @@ public class Spawner : MonoBehaviour
     List<GameObject> spawnList = new List<GameObject>();
     float delay = 0.1f;
     float tick = 0;
-
+    [SerializeField] int limitCount;
 
     void Start()
     {
@@ -19,6 +19,8 @@ public class Spawner : MonoBehaviour
 
     public void Spawn()
     {
+        if (spawnList.Count >= limitCount)
+            return;
         float distance = Random.Range(0, radius);
         float angle = Random.Range(0, 360);
         Quaternion quaternion = Quaternion.Euler(0, angle, 0);
@@ -29,6 +31,19 @@ public class Spawner : MonoBehaviour
 
         
         GameObject gameObject = ObjectPool.Instance.Allocate(prefabs[index].name);
+        if (gameObject == null)
+        {
+            Debug.LogError("can't find GameObject");
+            return; 
+        }
+        Monster monster= gameObject.GetComponent<Monster>();
+        if (monster==null)
+        {
+            Debug.LogError("can't find Monster");
+            return;
+        }
+        monster.Spawner = this;
+        
         gameObject.transform.position = randPos;
         
         spawnList.Add(gameObject);
@@ -42,7 +57,14 @@ public class Spawner : MonoBehaviour
         if(tick >= delay)
         {
             tick = 0;
-            Spawn();
+            Spawn(); 
         }
+    }
+
+    public void Remove(GameObject gameObject)
+    {
+        ObjectPool.Instance.Free(gameObject);
+        spawnList.Remove(gameObject);
+
     }
 }

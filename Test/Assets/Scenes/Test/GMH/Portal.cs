@@ -2,19 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TriggerTest : MonoBehaviour
+public class Portal : MonoBehaviour
 {
     GameObject player;
+    public Vector3 toPosition;
+    public float portalCount = 2;
 
-    MeshRenderer mesh;
-    Material mat;
-    Vector3 direction;
+    float moveCount;
     // Start is called before the first frame update
     void Start()
     {
-        mesh = GetComponent<MeshRenderer>();
-        mat = mesh.material;
-        direction = Vector3.forward;
+        moveCount = 0;
         player = GameObject.Find("Player");
     }
 
@@ -22,19 +20,26 @@ public class TriggerTest : MonoBehaviour
     {
         if (other.gameObject.name == "Player")
         {
-            mat.color = new Color(0, 0, 0, 0);
+            
         }
     }
 
     private void OnTriggerStay(Collider other)
     {
-      
+        if (other.gameObject.name == "Player")
+        {
+            moveCount += Time.deltaTime;
+            if(moveCount > portalCount)
+            {
+                other.transform.position = toPosition;
+            }
+        }
     }
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.name == "Player")
         {
-            mat.color = new Color(1, 1, 1, 0);
+            moveCount = 0;
         }
     }
 
