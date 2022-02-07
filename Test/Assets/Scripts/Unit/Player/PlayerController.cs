@@ -16,10 +16,21 @@ public class PlayerController : UnitController
     // Update is called once per frame
     protected override void Update()
     {
+        Block();
         Attack();
         Jump();
         Move();
         Test();
+       
+    }
+
+    void Forward_readjustment()
+    {
+        Vector3 forward = transform.position - Camera.main.transform.position;
+        forward.y = 0f;
+        forward.Normalize();
+        transform.LookAt(transform.position + forward);
+        direction = transform.forward;
     }
 
     void Jump()
@@ -88,29 +99,9 @@ public class PlayerController : UnitController
             animator.SetFloat("Velocity", 1f);
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if(collision.gameObject.CompareTag("Terrain"))
-        {
-            stats.JumpCheck = false;
-        }
-    }
-
-    void Test()
-    {
-        if(Input.GetKeyDown(KeyCode.Q))
-        {
-            stats.Hp -= 10;
-        }
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            stats.Mp -= 10;
-        }
-    }
-
     void Run()
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift) && animator.GetCurrentAnimatorStateInfo(0).IsName("Walk"))
+        if (Input.GetKey(KeyCode.LeftShift) && animator.GetCurrentAnimatorStateInfo(0).IsName("Walk"))
         {
             if (!animator.GetBool("Run"))
             {
@@ -122,18 +113,70 @@ public class PlayerController : UnitController
 
     bool Attack()
     {
-        if (Input.GetMouseButtonDown(1))
+        if (!animator.GetBool("MovePossible"))
+            return false;
+
+        if (Input.GetMouseButtonDown(0))
         {
             if(animator.GetBool("MovePossible") && !animator.GetBool("Jump"))
             {
-                animator.SetInteger("Attack", 1);
+                Forward_readjustment();
+                animator.SetInteger("Attack", 0);
                 Vector3 tempPos = gameObject.transform.position + (gameObject.transform.forward * 1.2f);
                 tempPos.y += 0.7f;
                 DamageObjectController.Create_DamageObject(UnitStat.Team.Player, tempPos, 1.5f, 1.2f, 15f);
+                
                 return true;
             }
         }
 
         return false;
+    }
+
+    void Block()
+    {
+        // Block : -1 안막음 // 0 : 무기종류로 모션구별중 //  1 : 막기 시전모션 // 2 : 막고있음 // 3 : 막기 끝나는 모션 (부자연스러워서 스킵함)
+        if (animator.GetInteger("Block") != 2)
+        {
+            if (!animator.GetBool("MovePossible"))
+                return;
+
+            if (Input.GetMouseButtonDown(1))
+            {
+                if (animator.GetBool("MovePossible") && !animator.GetBool("Jump"))
+                {
+                    Forward_readjustment();
+                    animator.SetInteger("Block", 0);
+                    animator.SetBool("MovePossible", false);
+                }
+            }
+        }
+        else
+        {
+            if (!Input.GetMouseButton(1))
+            {
+                animator.SetInteger("Block", 3);
+            }
+        }
+    }
+
+    void Test()
+    {
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            stats.Hp -= 10;
+        }
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            stats.Mp -= 10;
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.CompareTag("Terrain"))
+        {
+            stats.JumpCheck = false;
+        }
     }
 }
