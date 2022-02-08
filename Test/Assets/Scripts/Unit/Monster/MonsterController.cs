@@ -9,6 +9,7 @@ public class MonsterController : UnitController
     Animator animator;
     public float SearchDistance;
     public float ApproachDistance;
+    public float Range;
     [SerializeField] bool isSearch;
     Vector3 direction;
     float distance;
@@ -65,6 +66,7 @@ public class MonsterController : UnitController
         }
         else
         {
+            Attack();
             stat.MoveSpeed = 0;
             animator.SetFloat("Velocity", stat.MoveSpeed);
         }
