@@ -5,8 +5,8 @@ using UnityEngine;
 public class PlayerController : UnitController
 {
     private Vector3 direction = Vector3.forward;// 캐릭터가 바라보는 방향, 스킬 사용시 사용 
-    Animator animator;
-   protected override void Start()
+    public Animator animator;
+    protected override void Start()
     {
         base.Start();
         Physics.gravity = new Vector3(0f, -10f, 0f);
@@ -40,10 +40,10 @@ public class PlayerController : UnitController
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (!stats.JumpCheck)
+            if (!animator.GetBool("Jump"))
             {
                 GetComponent<Rigidbody>().AddForce(Vector3.up * stats.JumpPower, ForceMode.Impulse);
-                stats.JumpCheck = true;
+                animator.SetBool("Jump", true);
             }
         }
         
@@ -121,7 +121,7 @@ public class PlayerController : UnitController
             if(animator.GetBool("MovePossible") && !animator.GetBool("Jump"))
             {
                 Forward_readjustment();
-                animator.SetInteger("Attack", 0);
+                animator.SetInteger("Attack", 0); // 자동으로 MovePossible 도 False (다음 프레임)
                 Vector3 tempPos = gameObject.transform.position + (gameObject.transform.forward * 1.2f);
                 tempPos.y += 0.7f;
                 DamageObjectController.Create_DamageObject(UnitStat.Team.Player, tempPos, 1.5f, 1.2f, 15f);
@@ -146,8 +146,7 @@ public class PlayerController : UnitController
                 if (animator.GetBool("MovePossible") && !animator.GetBool("Jump"))
                 {
                     Forward_readjustment();
-                    animator.SetInteger("Block", 0);
-                    animator.SetBool("MovePossible", false);
+                    animator.SetInteger("Block", 0); // 자동으로 MovePossible 도 False (다음 프레임)
                 }
             }
         }
@@ -174,9 +173,9 @@ public class PlayerController : UnitController
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.CompareTag("Terrain"))
+        if (collision.gameObject.CompareTag("Terrain"))
         {
-            stats.JumpCheck = false;
+            animator.SetBool("Jump", false);
         }
     }
 }
