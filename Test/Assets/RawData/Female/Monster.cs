@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Monster : MonoBehaviour
 {
-    
-    
+
+    public Spawner Spawner { get; set; }
     float test;
     private Vector3 firstPosition;
     public int hp = 3;
@@ -29,13 +29,15 @@ public class Monster : MonoBehaviour
         {
             hp -= 1;
             test = 0;
-            ObjectPool.Instance.Free(gameObject);
+            Spawner.Remove(this.gameObject);
+            
         }
     }
 
     private void Start()
     {
         firstPosition = transform.position;
+        
     }
 
     public void TakeDamage(int damage)

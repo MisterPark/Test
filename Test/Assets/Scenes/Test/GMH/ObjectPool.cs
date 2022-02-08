@@ -9,6 +9,10 @@ public class ObjectPool : MonoBehaviour
 
     public static ObjectPool Instance { get { return _instance; } }
 
+
+    
+
+
     [SerializeField] List<GameObject> prefabs;
     
     Dictionary<string, Stack<GameObject>> _pools = new Dictionary<string, Stack<GameObject>>();
@@ -30,6 +34,7 @@ public class ObjectPool : MonoBehaviour
         }
         GameObject gameObject = _pools[key].Pop();
         gameObject.SetActive(true);
+        
         return gameObject;
     }
     public void Free(GameObject _gameObject)
@@ -89,6 +94,7 @@ public class ObjectPool : MonoBehaviour
             UpSizing(prefab.name);
         }
     }
+
     private void Start()
     {
         Initialize();
