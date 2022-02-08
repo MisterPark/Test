@@ -2,17 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AnimationController : UnitController
+public class AnimationController : MonoBehaviour
 {
     UnitStat stats;
     Animator animator;
-    protected override void Start()
+    void Start()
     {
         stats = GetComponent<UnitStat>();
         animator = (transform.Find("Mesh").gameObject).transform.GetChild(0).gameObject.GetComponent<Animator>();
     }
 
-    protected override void Update()
+    void Update()
     {
         //if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
         //    animator.SetFloat("Velocity", 1f);
@@ -25,9 +25,7 @@ public class AnimationController : UnitController
         animator.SetFloat("Velocity", velocity.magnitude * 100f);
         */
 
-        animator.SetBool("Jump", stats.JumpCheck);
-
-        Test();
+        
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -38,9 +36,4 @@ public class AnimationController : UnitController
         }
     }
 
-    void Test()
-    {
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName("JumpEnd") && animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.8f)
-            animator.SetBool("MovePossible", true);
-    }
 }
