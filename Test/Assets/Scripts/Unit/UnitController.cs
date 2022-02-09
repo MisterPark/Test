@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class UnitController : MonoBehaviour
 {
+    public enum AniMotion { Enter, Exit }
     // Start is called before the first frame update
     public UnitStat stats { get; set; }
     //private Rigidbody rigidbody;
-    
     protected virtual void Start()
     {
         stats = GetComponent<UnitStat>();
@@ -42,4 +42,57 @@ public class UnitController : MonoBehaviour
     {
         
     }
+
+    public virtual void Ani_Jump_Up(AniMotion timing)
+    {
+        switch (timing)
+        {
+            case AniMotion.Enter:
+                {
+                    // 애니메이션 모션 Jump_Up 시작할 때 호출
+                    break;
+                }
+            case AniMotion.Exit:
+                {
+                    // 애니메이션 모션 Jump_Up 에서 다른 모션으로 갔을 때 호출
+                    break;
+                }
+        }
+    }
+
+    public virtual void Ani_Jump_End(AniMotion timing)
+    {
+        switch (timing)
+        {
+            case AniMotion.Enter:
+                {
+                    // 애니메이션 모션 Jump_End(착지) 시작할 때 호출
+                    break;
+                }
+            case AniMotion.Exit:
+                {
+                    // 애니메이션 모션 Jump_End(착지) 에서 다른 모션으로 갔을 때 호출
+                    break;
+                }
+        }
+    }
+
+    public virtual void Ani_Run(AniMotion timing)
+    {
+        switch (timing)
+        {
+            case AniMotion.Enter:
+                {
+                    // 애니메이션 모션 Run 시작할 때 호출
+                    break;
+                }
+            case AniMotion.Exit:
+                {
+                    // 애니메이션 모션 Run 에서 다른 모션으로 갔을 때 호출
+                    break;
+                }
+        }
+
+    }
+
 }

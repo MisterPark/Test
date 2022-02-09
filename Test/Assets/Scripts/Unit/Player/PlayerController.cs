@@ -6,6 +6,7 @@ public class PlayerController : UnitController
 {
     private Vector3 direction = Vector3.forward;// 캐릭터가 바라보는 방향, 스킬 사용시 사용 
     public Animator animator;
+    AnimatorStateInfo aniStateInfo;
     protected override void Start()
     {
         base.Start();
@@ -16,12 +17,14 @@ public class PlayerController : UnitController
     // Update is called once per frame
     protected override void Update()
     {
+        aniStateInfo = animator.GetCurrentAnimatorStateInfo(0);
         Block();
         Attack();
         Jump();
         Move();
+        Idle();
         Test();
-       
+        
     }
 
     // Camera 방향으로 Player 방향 변경
@@ -48,6 +51,12 @@ public class PlayerController : UnitController
             }
         }
         
+    }
+
+    void Idle()
+    {
+        if (!aniStateInfo.IsName("Idle") && animator.GetBool("MovePossible"))
+            return;
     }
 
     void Move()
@@ -102,7 +111,7 @@ public class PlayerController : UnitController
 
     void Run()
     {
-        if (Input.GetKey(KeyCode.LeftShift) && animator.GetCurrentAnimatorStateInfo(0).IsName("Walk"))
+        if (Input.GetKey(KeyCode.LeftShift) && aniStateInfo.IsName("Walk"))
         {
             if (!animator.GetBool("Run"))
             {
@@ -129,14 +138,13 @@ public class PlayerController : UnitController
                     Vector3 tempPos = gameObject.transform.position + (gameObject.transform.forward * 1.2f);
                     tempPos.y += 0.7f;
                     DamageObjectController.Create_DamageObject(UnitStat.Team.Player, tempPos, 1.5f, 1.2f, 15f);
-
                     return true;
                 }
             }
         }
         else
         {
-            if(Input.GetMouseButtonDown(0) && animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.4f)
+            if(Input.GetMouseButtonDown(0) && aniStateInfo.normalizedTime >= 0.4f)
             {
                 animator.SetBool("AttackReserve", true);
             }
@@ -180,6 +188,21 @@ public class PlayerController : UnitController
         if (Input.GetKeyDown(KeyCode.W))
         {
             stats.Mp -= 10;
+        }
+        
+    }
+
+    public override void Ani_Run(AniMotion timing)
+    {
+        if (AniMotion.Enter == timing)
+        {
+            // 애니메이션 모션 Run 시작할 때 호출
+            CameraController.Instance.Set_Pov(70f);
+        }
+        if (AniMotion.Exit == timing)
+        {
+            // 애니메이션 모션 Run 에서 다른 모션으로 갔을 때 호출
+            CameraController.Instance.Set_Pov(60f);
         }
     }
 
