@@ -68,10 +68,7 @@ public class MonsterController : UnitController
         {
             Move();            
         }
-        if(OutSpawnRangeCheck())
-        {
-            MoveToTarget(SpawnPosition);
-        }
+        
 
     }
 
@@ -132,6 +129,7 @@ public class MonsterController : UnitController
         if (distance < 0.2)
         {
             isOutRange = false;
+            stat.MoveSpeed = 0;
             return;
         }
             
