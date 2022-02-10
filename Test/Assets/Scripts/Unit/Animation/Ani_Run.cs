@@ -5,12 +5,13 @@ using UnityEngine;
 public class Ani_Run : StateMachineBehaviour
 {
     UnitController unitController = null;
+
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         if (unitController == null)
             unitController = animator.transform.parent.parent.GetComponent<UnitController>();
-        unitController.Ani_Run(UnitController.AniMotion.Enter);
+        unitController.Ani_Run(UnitController.AniMotion.Enter, animator);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -26,7 +27,7 @@ public class Ani_Run : StateMachineBehaviour
         UnitStat stats = animator.gameObject.GetComponentInParent<Transform>().GetComponentInParent<UnitStat>();
         stats.MoveSpeed = stats.RawMoveSpeed;
 
-        unitController.Ani_Run(UnitController.AniMotion.Exit);
+        unitController.Ani_Run(UnitController.AniMotion.Exit, animator);
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()

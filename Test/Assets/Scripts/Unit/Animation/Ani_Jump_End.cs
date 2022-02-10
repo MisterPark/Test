@@ -13,7 +13,7 @@ public class Ani_Jump_End : StateMachineBehaviour
 
         if (unitController == null)
             unitController = animator.transform.parent.parent.GetComponent<UnitController>();
-        unitController.Ani_Jump_End(UnitController.AniMotion.Enter);
+        unitController.Ani_Jump_End(UnitController.AniMotion.Enter, animator);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -27,7 +27,7 @@ public class Ani_Jump_End : StateMachineBehaviour
     {
         animator.SetBool("MovePossible", true);
 
-        unitController.Ani_Jump_End(UnitController.AniMotion.Exit);
+        unitController.Ani_Jump_End(UnitController.AniMotion.Exit, animator);
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()

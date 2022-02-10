@@ -11,7 +11,7 @@ public class Ani_Jump_Up : StateMachineBehaviour
     {
         if (unitController == null)
             unitController = animator.transform.parent.parent.GetComponent<UnitController>();
-        unitController.Ani_Jump_Up(UnitController.AniMotion.Enter);
+        unitController.Ani_Jump_Up(UnitController.AniMotion.Enter, animator);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -25,7 +25,7 @@ public class Ani_Jump_Up : StateMachineBehaviour
     {
         animator.SetBool("ToLand", false);
 
-        unitController.Ani_Jump_Up(UnitController.AniMotion.Exit);
+        unitController.Ani_Jump_Up(UnitController.AniMotion.Exit, animator);
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()

@@ -192,17 +192,19 @@ public class PlayerController : UnitController
         
     }
 
-    public override void Ani_Run(AniMotion timing)
+    public override void Ani_Run(AniMotion timing, Animator animator)
     {
         if (AniMotion.Enter == timing)
         {
             // 애니메이션 모션 Run 시작할 때 호출
             CameraController.Instance.Set_Pov(70f);
+            //animator.speed = 5f;
         }
         if (AniMotion.Exit == timing)
         {
             // 애니메이션 모션 Run 에서 다른 모션으로 갔을 때 호출
             CameraController.Instance.Set_Pov(60f);
+            
         }
     }
 
