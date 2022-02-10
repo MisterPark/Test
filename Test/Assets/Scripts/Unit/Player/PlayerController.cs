@@ -6,6 +6,7 @@ public class PlayerController : UnitController
 {
     private Vector3 direction = Vector3.forward;// 캐릭터가 바라보는 방향, 스킬 사용시 사용 
     public Animator animator;
+    AnimatorStateInfo aniStateInfo;
     protected override void Start()
     {
         base.Start();
@@ -16,14 +17,17 @@ public class PlayerController : UnitController
     // Update is called once per frame
     protected override void Update()
     {
+        aniStateInfo = animator.GetCurrentAnimatorStateInfo(0);
         Block();
         Attack();
         Jump();
         Move();
+        Idle();
         Test();
-       
+        
     }
 
+    // Camera 방향으로 Player 방향 변경
     void Forward_readjustment()
     {
         Vector3 forward = transform.position - Camera.main.transform.position;
@@ -47,6 +51,12 @@ public class PlayerController : UnitController
             }
         }
         
+    }
+
+    void Idle()
+    {
+        if (!aniStateInfo.IsName("Idle") && animator.GetBool("MovePossible"))
+            return;
     }
 
     void Move()
@@ -101,7 +111,7 @@ public class PlayerController : UnitController
 
     void Run()
     {
-        if (Input.GetKey(KeyCode.LeftShift) && animator.GetCurrentAnimatorStateInfo(0).IsName("Walk"))
+        if (Input.GetKey(KeyCode.LeftShift) && aniStateInfo.IsName("Walk"))
         {
             if (!animator.GetBool("Run"))
             {
@@ -113,23 +123,32 @@ public class PlayerController : UnitController
 
     bool Attack()
     {
-        if (!animator.GetBool("MovePossible"))
-            return false;
-
-        if (Input.GetMouseButtonDown(0))
+        // Block : -1 안막음 // 0~1 : 무기종류로 모션구별중 //  2 : 첫번째 공격 // 3 : 두번째 공격
+        if (animator.GetInteger("Attack") == -1)
         {
-            if(animator.GetBool("MovePossible") && !animator.GetBool("Jump"))
+            if (!animator.GetBool("MovePossible"))
+                return false;
+
+            if (Input.GetMouseButtonDown(0))
             {
-                Forward_readjustment();
-                animator.SetInteger("Attack", 0); // 자동으로 MovePossible 도 False (다음 프레임)
-                Vector3 tempPos = gameObject.transform.position + (gameObject.transform.forward * 1.2f);
-                tempPos.y += 0.7f;
-                DamageObjectController.Create_DamageObject(UnitStat.Team.Player, tempPos, 1.5f, 1.2f, 15f);
-                
-                return true;
+                if (animator.GetBool("MovePossible") && !animator.GetBool("Jump"))
+                {
+                    //Forward_readjustment();
+                    animator.SetInteger("Attack", 0); // 자동으로 MovePossible 도 False (다음 프레임)
+                    Vector3 tempPos = gameObject.transform.position + (gameObject.transform.forward * 1.2f);
+                    tempPos.y += 0.7f;
+                    DamageObjectController.Create_DamageObject(UnitStat.Team.Player, tempPos, 1.5f, 1.2f, 15f);
+                    return true;
+                }
             }
         }
-
+        else
+        {
+            if(Input.GetMouseButtonDown(0) && aniStateInfo.normalizedTime >= 0.4f)
+            {
+                animator.SetBool("AttackReserve", true);
+            }
+        }
         return false;
     }
 
@@ -145,13 +164,14 @@ public class PlayerController : UnitController
             {
                 if (animator.GetBool("MovePossible") && !animator.GetBool("Jump"))
                 {
-                    Forward_readjustment();
+                    //Forward_readjustment();
                     animator.SetInteger("Block", 0); // 자동으로 MovePossible 도 False (다음 프레임)
                 }
             }
         }
         else
         {
+
             if (!Input.GetMouseButton(1))
             {
                 animator.SetInteger("Block", 3);
@@ -168,6 +188,23 @@ public class PlayerController : UnitController
         if (Input.GetKeyDown(KeyCode.W))
         {
             stats.Mp -= 10;
+        }
+        
+    }
+
+    public override void Ani_Run(AniMotion timing, Animator animator)
+    {
+        if (AniMotion.Enter == timing)
+        {
+            // 애니메이션 모션 Run 시작할 때 호출
+            CameraController.Instance.Set_Pov(70f);
+            //animator.speed = 5f;
+        }
+        if (AniMotion.Exit == timing)
+        {
+            // 애니메이션 모션 Run 에서 다른 모션으로 갔을 때 호출
+            CameraController.Instance.Set_Pov(60f);
+            
         }
     }
 

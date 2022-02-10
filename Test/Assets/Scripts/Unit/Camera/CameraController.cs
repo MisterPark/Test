@@ -12,16 +12,39 @@ public class CameraController : MonoBehaviour
     private float xRotate = 0f;
     Vector3 offset = new Vector3(0f, 1f, 0f);
 
+    private Camera cameraCom;
+    private float povSetSpeed = 10f;
+    private float cameraMaxPov = 60f;
+    private float cameraCurrentPov = 60f;
+
+    private static CameraController _instance;
+
+    public static CameraController Instance
+    {
+        get
+        {
+            if (_instance == null)
+                throw new System.Exception("Faild to Initialize");
+            return _instance;
+        }
+    }
+    private void Awake()
+    {
+        if (_instance == null)
+            _instance = this;
+    }
     void Start()
     {
         player = GameObject.Find("Player");
         Cursor_Visible(false);
+        cameraCom = GetComponent<Camera>();
     }
 
     private void LateUpdate()
     {
         Move();
         Zoom();
+        Pov();
         if (Input.GetKeyDown(KeyCode.T))
             Cursor_Visible(true);
         if (Input.GetKeyDown(KeyCode.Y))
@@ -70,5 +93,30 @@ public class CameraController : MonoBehaviour
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
         }
+    }
+
+    public void Pov()
+    {
+        if (cameraCurrentPov < cameraMaxPov)
+        {
+            cameraCom.fieldOfView += povSetSpeed * Time.deltaTime;
+            if (cameraCom.fieldOfView >= cameraMaxPov)
+                cameraCom.fieldOfView = cameraMaxPov;
+            cameraCurrentPov = cameraCom.fieldOfView;
+        }
+        else if (cameraCurrentPov > cameraMaxPov)
+        {
+            cameraCom.fieldOfView -= (povSetSpeed * 0.8f) * Time.deltaTime;
+            if (cameraCom.fieldOfView <= cameraMaxPov)
+                cameraCom.fieldOfView = cameraMaxPov;
+            cameraCurrentPov = cameraCom.fieldOfView;
+        }
+        
+    }
+
+    public void Set_Pov(float _pov = 60f, float _povSetSpeed = 20f)
+    {
+        cameraMaxPov = _pov;
+        povSetSpeed = _povSetSpeed;
     }
 }
