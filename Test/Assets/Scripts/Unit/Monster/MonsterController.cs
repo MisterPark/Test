@@ -64,12 +64,13 @@ public class MonsterController : UnitController
             }
             
         }
-        else if(!OutSpawnRangeCheck())
+        else
         {
-            Move();            
+            if (!OutSpawnRangeCheck())
+            {
+                Move(); 
+            }
         }
-        
-
     }
 
 
@@ -94,19 +95,32 @@ public class MonsterController : UnitController
         }
         return false;
     }
+    protected void DirectedToPlayer()
+    {
+        direction = player.transform.position - transform.position;
+        direction.Normalize();
+        direction.y = 0;
+        transform.forward = direction;
+    }
+    private Vector3 DirectToTarget(Vector3 target)
+    {
+        direction = target - transform.position;
+        direction.Normalize();
+        direction.y = 0;
+        return direction;
+    }
 
     protected void Move()
     {
        
         distance = Vector3.Distance(transform.position, player.transform.position);
-        if (distance > ApproachDistance)
+        if (distance > ApproachDistance&&animator.GetInteger("Attack")==-1)
         {
             stat.MoveSpeed = stat.RawMoveSpeed;
             direction = player.transform.position - transform.position;
             direction.Normalize();
             direction.y = 0;
-
-            animator.SetFloat("Velocity", stat.MoveSpeed);
+            animator.SetBool("Walk", true);
             if (stat.MoveSpeed != 0)
             {
                 transform.forward = direction;
@@ -118,32 +132,27 @@ public class MonsterController : UnitController
             //»ç°Å¸®
             Attack();
             stat.MoveSpeed = 0;
-            animator.SetFloat("Velocity", stat.MoveSpeed);
         }
     }
 
     protected void MoveToTarget(Vector3 target)
     {
         float distance = Vector3.Distance(target, transform.position);
-
         if (distance < 0.2)
         {
             isOutRange = false;
             stat.MoveSpeed = 0;
+            animator.SetBool("Walk", false);
             return;
         }
-            
-        direction = target - transform.position;
-        direction.Normalize();
-        direction.y = 0;
-
-        animator.SetFloat("Velocity", stat.MoveSpeed);
+        direction = DirectToTarget(target);
+        transform.forward = direction;
+        animator.SetBool("Walk", true);
         if (stat.MoveSpeed != 0)
         {
-            transform.forward = direction;
+            stat.Hp = stat.MaxHp;
             transform.position += direction * stat.MoveSpeed * Time.deltaTime;
         }
-
     }
 
 
@@ -159,14 +168,6 @@ public class MonsterController : UnitController
         }
         return false;
     }
-
-    protected void DirectedToPlayer()
-    {
-        
-        direction = player.transform.position - transform.position;
-        direction.Normalize();
-        direction.y = 0;
-        transform.forward = direction;
-        
-    }
+    
 }
+
