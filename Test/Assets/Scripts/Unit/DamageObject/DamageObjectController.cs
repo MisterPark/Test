@@ -6,6 +6,7 @@ public class DamageObjectController : UnitController
 {
     public float lifeTime;
     List<GameObject> DamagedList =  new List<GameObject>();
+    public GameObject host;
     //static protected GameObject damageObject = Resources.Load("DamageObject/DamageObject") as GameObject;
     
     // Start is called before the first frame update
@@ -50,7 +51,7 @@ public class DamageObjectController : UnitController
         stats.team = UnitStat.Team.Enemy;
     }
 
-    public static void Create_DamageObject(UnitStat.Team _team, Vector3 _pos, float _scale, float _lifeTime, float _damage)
+    public static void Create_DamageObject(GameObject _host, UnitStat.Team _team, Vector3 _pos, float _scale, float _lifeTime, float _damage)
     {
         GameObject newDamageObject = Instantiate(Resources.Load("DamageObject/DamageObject")) as GameObject;
         newDamageObject.transform.position = _pos;
@@ -59,6 +60,7 @@ public class DamageObjectController : UnitController
         newDamageObjectUnit.stats.team = _team;
         newDamageObjectUnit.stats.AttackDamage = _damage;
         DamageObjectController newDamageObjectController = newDamageObject.GetComponent<DamageObjectController>();
+        newDamageObjectController.host = _host;
         newDamageObjectController.lifeTime = _lifeTime;
 
     }

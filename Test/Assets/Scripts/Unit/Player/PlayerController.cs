@@ -98,10 +98,6 @@ public class PlayerController : UnitController
         // Rotate
         transform.LookAt(transform.position + direction);
 
-        //float inputX = Input.GetAxis("Horizontal");
-        //float inputZ = Input.GetAxis("Vertical");
-        //Vector3 velocity = new Vector3(inputX, 0, inputZ);
-        //stats.Velocity = velocity;
         
         if(moveDirection == Vector3.zero)
             animator.SetBool("Walk", false);
@@ -137,7 +133,7 @@ public class PlayerController : UnitController
                     animator.SetInteger("Attack", 0); // 자동으로 MovePossible 도 False (다음 프레임)
                     Vector3 tempPos = gameObject.transform.position + (gameObject.transform.forward * 1.2f);
                     tempPos.y += 0.7f;
-                    DamageObjectController.Create_DamageObject(UnitStat.Team.Player, tempPos, 1.5f, 1.2f, 15f);
+                    DamageObjectController.Create_DamageObject(gameObject, UnitStat.Team.Player, tempPos, 1.5f, 1.2f, 15f);
                     return true;
                 }
             }

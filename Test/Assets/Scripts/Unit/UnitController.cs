@@ -38,6 +38,19 @@ public class UnitController : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Temp
+    /// <param name="_otherHost">DamageObject 주인</param>
+    /// <param name="_other">DamageObject</param>
+    /// <param name="_value">데미지계산후, 체력이 달기 직전의 값</param>
+    /// </summary>
+    /// <returns></returns>
+    public virtual int Damaged(GameObject _otherHost, GameObject _other, int _value)
+    {
+        
+        return _value;
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         
