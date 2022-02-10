@@ -36,14 +36,21 @@ public class Spawner : MonoBehaviour
             Debug.LogError("can't find GameObject");
             return; 
         }
-        Monster monster= gameObject.GetComponent<Monster>();
-        if (monster==null)
+        //Monster monster= gameObject.GetComponent<Monster>();
+        //if (monster==null)
+        //{
+        //    Debug.LogError("can't find Monster");
+        //    return;
+        //}
+        //monster.Spawner = this;
+        MonsterController monsterController = gameObject.GetComponent<MonsterController>();
+        if (monsterController == null)
         {
-            Debug.LogError("can't find Monster");
+            Debug.LogError("can't find MonsterController");
             return;
         }
-        monster.Spawner = this;
-        
+        monsterController.spawner = this;
+
         gameObject.transform.position = randPos;
         
         spawnList.Add(gameObject);
