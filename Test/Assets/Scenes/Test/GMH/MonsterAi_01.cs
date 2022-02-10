@@ -8,6 +8,15 @@ public class MonsterAi_01 : MonsterController
 
 
     // Start is called before the first frame update
+    protected void OnEnable()
+    {
+        base.OnEnable();
+    }
+    protected void OnDisable()
+    {
+        base.OnDisable();
+    }
+
     protected override void Start()
     {
         base.Start();

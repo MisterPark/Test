@@ -98,8 +98,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SearchDistance: 5
-  ApproachDistance: 2
-  AttackRange: 2
+  ApproachDistance: 1
+  AttackRange: 1
   isSearch: 0
 --- !u!54 &462730144869834593
 Rigidbody:
