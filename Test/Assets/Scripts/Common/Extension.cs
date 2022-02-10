@@ -22,11 +22,11 @@ public static class Extension
     "LeftUpperLeg",
     "LeftLowerLeg",
     "LeftFoot",
-    "LeftToes",
+    "LeftToe",
     "RightUpperLeg",
     "RightLowerLeg",
     "RightFoot",
-    "RightToes",
+    "RightToe",
     "Neck",
     "Head",
     "LeftEye",
@@ -72,18 +72,14 @@ public static class Extension
         "Hips",
     "Spine",
     "Chest",
-    "UpperChest",
     "Shoulder",
-    "UpperArm",
-    "LowerArm",
+    "Arm",
     "Hand",
-    "UpperLeg",
-    "LowerLeg",
+    "Leg",
     "Foot",
-    "Toes",
+    "Toe",
     "Neck",
     "Head",
-    "Eye",
     "Eye",
     "Jaw",
     "Thumb",
@@ -101,6 +97,7 @@ public static class Extension
         }
 
         string prefix = string.Empty; // 立滴荤
+        string prefix2 = string.Empty; // 立滴荤2
         string suffix = string.Empty; // 立固荤
 
         foreach (var bone in simpleBoneNames)
@@ -108,13 +105,23 @@ public static class Extension
             if (name.Contains(bone))
             {
                 // 立滴荤 贸府
-                if (name.Contains("L") || name.Contains("Left"))
+                if (name.Contains("L_") || name.Contains("Left"))
                 {
                     prefix = "Left";
                 }
-                else if (name.Contains("R") || name.Contains("Right"))
+                else if (name.Contains("R_") || name.Contains("Right"))
                 {
                     prefix = "Right";
+                }
+
+                // 立滴荤 贸府2
+                if (name.Contains("Upper"))
+                {
+                    prefix2 = "Upper";
+                }
+                else if (name.Contains("Lower"))
+                {
+                    prefix2 = "Lower";
                 }
 
                 // 立固荤 贸府
@@ -131,7 +138,7 @@ public static class Extension
                     suffix = "3";
                 }
 
-                return prefix + bone + suffix;
+                return prefix + prefix2 + bone + suffix;
             }
         }
 
