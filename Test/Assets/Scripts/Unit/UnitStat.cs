@@ -19,7 +19,6 @@ public class UnitStat : MonoBehaviour
     [SerializeField] public float RawMoveSpeed;
     [HideInInspector] public float MoveSpeed;
     [SerializeField] public float JumpPower;
-    public Vector3 Velocity;
 
     private void Start()
     {

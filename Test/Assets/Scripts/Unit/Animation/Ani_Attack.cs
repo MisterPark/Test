@@ -4,23 +4,29 @@ using UnityEngine;
 
 public class Ani_Attack : StateMachineBehaviour
 {
+    UnitController unitController = null;
+
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         animator.SetBool("MovePossible", false);
         animator.SetInteger("Attack", 1);
+
+        if (unitController == null)
+            unitController = animator.transform.parent.parent.GetComponent<UnitController>();
+        unitController.Ani_Attack(UnitController.AniMotion.Enter, animator);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
-    //override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-    //    
-    //}
+    override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        unitController.Ani_Attack(UnitController.AniMotion.Update, animator);
+    }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        animator.SetInteger("Attack", -1);
+        unitController.Ani_Attack(UnitController.AniMotion.Exit, animator);
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
