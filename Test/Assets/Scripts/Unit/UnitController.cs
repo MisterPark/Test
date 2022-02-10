@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class UnitController : MonoBehaviour
 {
-    public enum AniMotion { Enter, Exit }
+    public enum AniMotion { Enter, Update, Exit }
     // Start is called before the first frame update
     public UnitStat stats { get; set; }
     //private Rigidbody rigidbody;
@@ -52,6 +52,10 @@ public class UnitController : MonoBehaviour
                     // 애니메이션 모션 Idle 시작할 때 호출
                     break;
                 }
+            case AniMotion.Update:
+                {
+                    break;
+                }
             case AniMotion.Exit:
                 {
                     // 애니메이션 모션 Idle 에서 다른 모션으로 갔을 때 호출
@@ -67,6 +71,10 @@ public class UnitController : MonoBehaviour
             case AniMotion.Enter:
                 {
 
+                    break;
+                }
+            case AniMotion.Update:
+                {
                     break;
                 }
             case AniMotion.Exit:
@@ -86,6 +94,10 @@ public class UnitController : MonoBehaviour
                     
                     break;
                 }
+            case AniMotion.Update:
+                {
+                    break;
+                }
             case AniMotion.Exit:
                 {
                     
@@ -100,6 +112,10 @@ public class UnitController : MonoBehaviour
             case AniMotion.Enter:
                 {
                     // 애니메이션 모션 Jump_Up 시작할 때 호출
+                    break;
+                }
+            case AniMotion.Update:
+                {
                     break;
                 }
             case AniMotion.Exit:
@@ -120,6 +136,10 @@ public class UnitController : MonoBehaviour
                     
                     break;
                 }
+            case AniMotion.Update:
+                {
+                    break;
+                }
             case AniMotion.Exit:
                 {
                     // 애니메이션 모션 Jump_End(착지) 에서 다른 모션으로 갔을 때 호출
@@ -134,6 +154,10 @@ public class UnitController : MonoBehaviour
         switch (timing)
         {
             case AniMotion.Enter:
+                {
+                    break;
+                }
+            case AniMotion.Update:
                 {
                     break;
                 }
@@ -153,6 +177,10 @@ public class UnitController : MonoBehaviour
                 {
                     break;
                 }
+            case AniMotion.Update:
+                {
+                    break;
+                }
             case AniMotion.Exit:
                 {
                     break;
@@ -166,6 +194,10 @@ public class UnitController : MonoBehaviour
         switch (timing)
         {
             case AniMotion.Enter:
+                {
+                    break;
+                }
+            case AniMotion.Update:
                 {
                     break;
                 }
@@ -185,6 +217,10 @@ public class UnitController : MonoBehaviour
                 {
                     break;
                 }
+            case AniMotion.Update:
+                {
+                    break;
+                }
             case AniMotion.Exit:
                 {
                     break;
@@ -198,6 +234,10 @@ public class UnitController : MonoBehaviour
         switch (timing)
         {
             case AniMotion.Enter:
+                {
+                    break;
+                }
+            case AniMotion.Update:
                 {
                     break;
                 }

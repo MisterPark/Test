@@ -98,15 +98,15 @@ public class PlayerController : UnitController
         // Rotate
         transform.LookAt(transform.position + direction);
 
-        float inputX = Input.GetAxis("Horizontal");
-        float inputZ = Input.GetAxis("Vertical");
-        Vector3 velocity = new Vector3(inputX, 0, inputZ);
-        stats.Velocity = velocity;
+        //float inputX = Input.GetAxis("Horizontal");
+        //float inputZ = Input.GetAxis("Vertical");
+        //Vector3 velocity = new Vector3(inputX, 0, inputZ);
+        //stats.Velocity = velocity;
         
         if(moveDirection == Vector3.zero)
-            animator.SetFloat("Velocity", 0f);
+            animator.SetBool("Walk", false);
         else
-            animator.SetFloat("Velocity", 1f);
+            animator.SetBool("Walk", true);
     }
 
     void Run()
@@ -194,17 +194,22 @@ public class PlayerController : UnitController
 
     public override void Ani_Run(AniMotion timing, Animator animator)
     {
-        if (AniMotion.Enter == timing)
+        switch (timing)
         {
-            // 애니메이션 모션 Run 시작할 때 호출
-            CameraController.Instance.Set_Pov(70f);
-            //animator.speed = 5f;
-        }
-        if (AniMotion.Exit == timing)
-        {
-            // 애니메이션 모션 Run 에서 다른 모션으로 갔을 때 호출
-            CameraController.Instance.Set_Pov(60f);
-            
+            case AniMotion.Enter:
+                {
+                    CameraController.Instance.Set_Pov(70f);
+                    break;
+                }
+            case AniMotion.Update:
+                {
+                    break;
+                }
+            case AniMotion.Exit:
+                {
+                    CameraController.Instance.Set_Pov(60f);
+                    break;
+                }
         }
     }
 
@@ -216,6 +221,10 @@ public class PlayerController : UnitController
             case AniMotion.Enter:
                 {
                     animator.SetFloat("AttackSpeed", 1.5f);
+                    break;
+                }
+            case AniMotion.Update:
+                {
                     break;
                 }
             case AniMotion.Exit:
