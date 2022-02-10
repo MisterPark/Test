@@ -5,6 +5,7 @@ using UnityEngine;
 public class KeyTest : MonoBehaviour
 {
     public MessageBox TempCanvas;
+    public UI_Crosshair TempCross;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,7 +16,11 @@ public class KeyTest : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.K))
         {
-            TempCanvas.Show("굳건이", "높은산 깊은 골 적막한 산하 눈내린 전선을 우리는 간다~" , 5f);
+            TempCanvas.Show("굳건이", "높은산 깊은 골 적막한 산하 눈내린 전선을 우리는 간다~", 5f);
+        }
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            TempCross.show(false);
         }
     }
 }
