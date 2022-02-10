@@ -237,4 +237,16 @@ public class PlayerController : UnitController
             animator.SetBool("Jump", false);
         }
     }
+
+    public override float Damaged(GameObject _otherHost, GameObject _other, float _value)
+    {
+        if(animator.GetInteger("Block") == 2)
+        {
+            if (IsTargetInSight(_otherHost.transform.position))
+            {
+                _value = 0f;
+            }
+        }
+        return _value;
+    }
 }

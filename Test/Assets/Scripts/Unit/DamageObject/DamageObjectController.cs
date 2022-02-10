@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class DamageObjectController : UnitController
 {
-    public float lifeTime;
+    [HideInInspector] public float lifeTime;
     List<GameObject> DamagedList =  new List<GameObject>();
-    public GameObject host;
+    [HideInInspector] public GameObject host;
     //static protected GameObject damageObject = Resources.Load("DamageObject/DamageObject") as GameObject;
     
     // Start is called before the first frame update
@@ -40,7 +40,9 @@ public class DamageObjectController : UnitController
                 return;
         }
 
-        otherUnit.stats.Hp -= stats.AttackDamage;
+        float damage = stats.AttackDamage;
+        damage = otherUnit.controller.Damaged(host, gameObject, damage);
+        otherUnit.stats.Hp -= damage;
         DamagedList.Add(other.gameObject);
     }
 

@@ -25,5 +25,6 @@ public class UnitStat : MonoBehaviour
         Hp = MaxHp;
         Mp = MaxMp;
         MoveSpeed = RawMoveSpeed;
+        AttackSpeed = 1f;
     }
 }

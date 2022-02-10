@@ -39,15 +39,13 @@ public class UnitController : MonoBehaviour
     }
 
     /// <summary>
-    /// Temp
-    /// <param name="_otherHost">DamageObject 주인</param>
-    /// <param name="_other">DamageObject</param>
-    /// <param name="_value">데미지계산후, 체력이 달기 직전의 값</param>
+    /// _otherHost : DamageObject 주인  //
+    /// _other : DamageObject  //
+    /// _value : 데미지계산후(예정), 체력이 달기 직전의 값
     /// </summary>
-    /// <returns></returns>
-    public virtual int Damaged(GameObject _otherHost, GameObject _other, int _value)
+    public virtual float Damaged(GameObject _otherHost, GameObject _other, float _value)
     {
-        
+        // 막기용
         return _value;
     }
 
