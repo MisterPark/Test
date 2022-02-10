@@ -208,6 +208,23 @@ public class PlayerController : UnitController
         }
     }
 
+    public override void Ani_Attack(AniMotion timing, Animator animator)
+    {
+        // Attack 상태로 들어오고 무기종류에 따라 공격 모션을 결정짓는 중간 단계 (공격 때리는 모션은 아님)
+        switch (timing)
+        {
+            case AniMotion.Enter:
+                {
+                    animator.SetFloat("AttackSpeed", 1.5f);
+                    break;
+                }
+            case AniMotion.Exit:
+                {
+                    break;
+                }
+        }
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Terrain"))
