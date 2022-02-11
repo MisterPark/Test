@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Unit : MonoBehaviour
 {
-    public UnitController controller;
+    [HideInInspector] public UnitController controller;
     public UnitStat stats { get; set; }
 
     private void Awake()
