@@ -184,7 +184,15 @@ public class PlayerController : UnitController
         {
             stats.Mp -= 10;
         }
-        
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            //∫Œ»∞
+            if (animator.GetBool("IsDead"))
+            {
+                animator.SetBool("IsDead", false);
+                stats.Hp = stats.MaxHp;      
+            }
+        }
     }
 
     public override void Ani_Run(AniMotion timing, Animator animator)
@@ -278,5 +286,44 @@ public class PlayerController : UnitController
             stats.invincibilityTime = stats.basic_InvincibilityTime;
         }
         return _value;
+    }
+
+    public override void Ani_Impact(AniMotion timing, Animator animator)
+    {
+        switch (timing)
+        {
+            case AniMotion.Enter:
+                {
+                    if (stats.Hp <= 0f)
+                        animator.SetBool("IsDead", true);
+                    break;
+                }
+            case AniMotion.Update:
+                {
+                    break;
+                }
+            case AniMotion.Exit:
+                {
+                    break;
+                }
+        }
+    }
+    public override void Ani_Death(AniMotion timing, Animator animator)
+    {
+        switch (timing)
+        {
+            case AniMotion.Enter:
+                {
+                    break;
+                }
+            case AniMotion.Update:
+                {
+                    break;
+                }
+            case AniMotion.Exit:
+                {
+                    break;
+                }
+        }
     }
 }

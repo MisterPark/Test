@@ -298,4 +298,24 @@ public class UnitController : MonoBehaviour
                 }
         }
     }
+
+    /// <summary> Á×´Â¸ð¼Ç </summary>>
+    public virtual void Ani_Death(AniMotion timing, Animator animator)
+    {
+        switch (timing)
+        {
+            case AniMotion.Enter:
+                {
+                    break;
+                }
+            case AniMotion.Update:
+                {
+                    break;
+                }
+            case AniMotion.Exit:
+                {
+                    break;
+                }
+        }
+    }
 }

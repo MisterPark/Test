@@ -370,6 +370,10 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 8953041446812488606, guid: b723125238dee4f40bb1954a0df3e5cd, type: 3}
+      propertyPath: MaxHp
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 8953041446812488606, guid: b723125238dee4f40bb1954a0df3e5cd, type: 3}
       propertyPath: basic_InvincibilityTime
       value: 2
       objectReference: {fileID: 0}

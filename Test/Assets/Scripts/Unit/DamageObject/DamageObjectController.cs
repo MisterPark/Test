@@ -33,6 +33,8 @@ public class DamageObjectController : UnitController
 
         if (stats.team == otherUnit.stats.team || UnitStat.Team.Natural == otherUnit.stats.team)
             return;
+        if (otherUnit.stats.Hp <= 0f)
+            return;
 
         foreach (GameObject damaged in DamagedList)
         {
