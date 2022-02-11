@@ -38,11 +38,25 @@ public class UnitController : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// _otherHost : DamageObject 주인  //
+    /// _other : DamageObject  //
+    /// _value : 데미지계산후(예정), 체력이 달기 직전의 값
+    /// </summary>
+    public virtual float Damaged(GameObject _otherHost, GameObject _other, float _value)
+    {
+        // 데미지 오브젝트가 피해를 입힐 적 오브젝트의 Damaged 를 호출
+        // 막기용
+
+        return _value;
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         
     }
 
+    /// <summary> 기본 모션 </summary>>
     public virtual void Ani_Idle(AniMotion timing, Animator animator)
     {
         switch (timing)
@@ -63,7 +77,7 @@ public class UnitController : MonoBehaviour
                 }
         }
     }
-
+    /// <summary> 걷기 모션 </summary>>
     public virtual void Ani_Walk(AniMotion timing, Animator animator)
     {
         switch (timing)
@@ -84,7 +98,7 @@ public class UnitController : MonoBehaviour
                 }
         }
     }
-
+    /// <summary> 달리기 모션 </summary>>
     public virtual void Ani_Run(AniMotion timing, Animator animator)
     {
         switch (timing)
@@ -105,6 +119,7 @@ public class UnitController : MonoBehaviour
                 }
         }
     }
+    /// <summary> 점프직전모션 </summary>>
     public virtual void Ani_Jump_Up(AniMotion timing, Animator animator)
     {
         switch (timing)
@@ -125,7 +140,7 @@ public class UnitController : MonoBehaviour
                 }
         }
     }
-
+    /// <summary> 착지모션 </summary>>
     public virtual void Ani_Jump_End(AniMotion timing, Animator animator)
     {
         switch (timing)
@@ -147,10 +162,9 @@ public class UnitController : MonoBehaviour
                 }
         }
     }
-
+    /// <summary> 첫번째 공격 모션 </summary>>
     public virtual void Ani_Attack(AniMotion timing, Animator animator)
     {
-        // Attack 상태로 들어오고 무기종류에 따라 공격 모션을 결정짓는 중간 단계 (공격 때리는 모션은 아님)
         switch (timing)
         {
             case AniMotion.Enter:
@@ -187,10 +201,9 @@ public class UnitController : MonoBehaviour
                 }
         }
     }
-
+    /// <summary> 두번째 공격 모션 </summary>>
     public virtual void Ani_Attack_02(AniMotion timing, Animator animator)
     {
-        // 두번째 공격 모션
         switch (timing)
         {
             case AniMotion.Enter:
@@ -207,10 +220,9 @@ public class UnitController : MonoBehaviour
                 }
         }
     }
-
+    /// <summary> Block 상태로 들어오고 무기종류에 따라 막기 모션을 결정짓는 중간 단계 (막기 모션은 아님) </summary>>
     public virtual void Ani_Block(AniMotion timing, Animator animator)
     {
-        // Block 상태로 들어오고 무기종류에 따라 막기 모션을 결정짓는 중간 단계 (막기 모션은 아님)
         switch (timing)
         {
             case AniMotion.Enter:
@@ -231,6 +243,65 @@ public class UnitController : MonoBehaviour
     public virtual void Ani_Block_02(AniMotion timing, Animator animator)
     {
         // 막고있는 상태
+        switch (timing)
+        {
+            case AniMotion.Enter:
+                {
+                    break;
+                }
+            case AniMotion.Update:
+                {
+                    break;
+                }
+            case AniMotion.Exit:
+                {
+                    break;
+                }
+        }
+    }
+    /// <summary> 피격상태로 가기 위한 중간 과정 (무기종류에 따라) </summary>>
+    public virtual void Ani_Impact(AniMotion timing, Animator animator)
+    {
+        //int Impact : -1 노피격상태 // 0 ~ 1 : 피격모션으로 가기위한 중간상태 // 2 : 피격모션(상태)
+        switch (timing)
+        {
+            case AniMotion.Enter:
+                {
+                    break;
+                }
+            case AniMotion.Update:
+                {
+                    break;
+                }
+            case AniMotion.Exit:
+                {
+                    break;
+                }
+        }
+    }
+    /// <summary> 피격상태 </summary>>
+    public virtual void Ani_Impact_01(AniMotion timing, Animator animator)
+    {
+        switch (timing)
+        {
+            case AniMotion.Enter:
+                {
+                    break;
+                }
+            case AniMotion.Update:
+                {
+                    break;
+                }
+            case AniMotion.Exit:
+                {
+                    break;
+                }
+        }
+    }
+
+    /// <summary> 죽는모션 </summary>>
+    public virtual void Ani_Death(AniMotion timing, Animator animator)
+    {
         switch (timing)
         {
             case AniMotion.Enter:

@@ -19,11 +19,15 @@ public class UnitStat : MonoBehaviour
     [SerializeField] public float RawMoveSpeed;
     [HideInInspector] public float MoveSpeed;
     [SerializeField] public float JumpPower;
+    [SerializeField] public float basic_InvincibilityTime = 0f;  // 피격당하고 난 뒤 무적시간
+    [HideInInspector] public float invincibilityTime = 0f;       // 실시간 돌아가는 무적시간
 
     private void Start()
     {
         Hp = MaxHp;
         Mp = MaxMp;
         MoveSpeed = RawMoveSpeed;
+        AttackSpeed = 1f;
+        
     }
 }
