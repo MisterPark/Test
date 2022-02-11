@@ -34,7 +34,8 @@ public class Arrow : MonoBehaviour
 
     private void OnDisable()
     {
-        shooter.Remove(this.gameObject);
+        //if (shooter != null)
+        //{ shooter.Remove(this.gameObject); }
     }
 
     void Move()

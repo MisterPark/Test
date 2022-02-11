@@ -178,9 +178,6 @@ public class MonsterController : UnitController
         return false;
     }
     
-    public void Remove(GameObject gameObject)
-    {
-        ObjectPool.Instance.Free(gameObject);
-    }
+   
 }
 
