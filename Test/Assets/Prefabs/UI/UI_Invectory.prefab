@@ -226,8 +226,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -400}
-  m_SizeDelta: {x: 0, y: 800}
+  m_AnchoredPosition: {x: 0, y: -650}
+  m_SizeDelta: {x: 0, y: 1300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &7745707134565245551
 GameObject:
@@ -326,7 +326,7 @@ MonoBehaviour:
   m_ContentAreaPadding: 20
   m_SlotSize: 210
   m_SlotAreaRT: {fileID: 7745707134260015932}
-  m_SlotUIPrefab: {fileID: 7360727804610213848, guid: dc2d16b45879cc0479a5c9a50da3ac44, type: 3}
+  m_SlotUIPrefab: {fileID: 7360727804610213848, guid: 8038f5f06fd07bb4a96e3a3a0bdb1c62, type: 3}
   Tempsprite: {fileID: 0}
 --- !u!114 &7745707134565245536
 MonoBehaviour:
@@ -461,8 +461,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7745707133772013585}
   m_HandleRect: {fileID: 7745707133772013584}
   m_Direction: 2
-  m_Value: 0.99999994
-  m_Size: 0.6248704
+  m_Value: 1
+  m_Size: 0.2853216
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
