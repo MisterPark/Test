@@ -22,6 +22,7 @@ public class Inventory : MonoBehaviour
     {
         m_Items = new Item[m_MaxCapacity];
         Capacity = m_InitalCapacity;
+        m_InventoryUI.SetInventoryReference(this);
     }
 
     private void Start()

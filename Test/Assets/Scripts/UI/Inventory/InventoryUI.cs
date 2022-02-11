@@ -9,17 +9,19 @@ public class InventoryUI : MonoBehaviour
 
     [Range(0, 10)]
     [SerializeField] private int m_VerticalSlotCount = 8;
-    [SerializeField] private float m_SlotMargin = 8f;
+    [SerializeField] private float m_SlotMargin = 64f;
     [SerializeField] private float m_ContentAreaPadding = 20f;
 
-    [Range(32, 64)]
-    [SerializeField] private float m_SlotSize = 64f;
+    [Range(32, 256)]
+    [SerializeField] private float m_SlotSize = 128f;
 
     [SerializeField] private RectTransform m_SlotAreaRT;
     [SerializeField] private GameObject m_SlotUIPrefab;
-    private List<ItemSlotUI> m_SlotUIList;
+    private List<ItemSlotUI> m_SlotUIList = new List<ItemSlotUI>();
 
     public Sprite Tempsprite;
+
+    private Inventory m_Inventory;
     // Start is called before the first frame update
     void Start()
     {
@@ -35,7 +37,7 @@ public class InventoryUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     private void Init()
@@ -53,7 +55,7 @@ public class InventoryUI : MonoBehaviour
         }
         m_SlotUIPrefab.SetActive(false);
 
-        Vector2 beginpos = new Vector2(m_ContentAreaPadding, m_ContentAreaPadding);
+        Vector2 beginpos = new Vector2(m_ContentAreaPadding, -m_ContentAreaPadding);
         Vector2 curpos = beginpos;
 
         m_SlotUIList = new List<ItemSlotUI>(m_VerticalSlotCount * m_HorizontalSlotCount);
@@ -67,6 +69,7 @@ public class InventoryUI : MonoBehaviour
                 var slotRT = CloneSlot();
                 slotRT.pivot = new Vector2(0f, 1f);
                 slotRT.anchoredPosition = curpos;
+                slotRT.localScale = new Vector3(1f, 1f, 1f);
                 slotRT.gameObject.SetActive(true);
                 slotRT.gameObject.name = $"Item Slot[{slotindex}]";
 
@@ -75,10 +78,11 @@ public class InventoryUI : MonoBehaviour
                 m_SlotUIList.Add(slotUI);
 
                 curpos.x += (m_SlotMargin + m_SlotSize);
+
             }
 
             curpos.x = beginpos.x;
-            curpos.y = (m_SlotMargin + m_SlotSize);
+            curpos.y -= (m_SlotMargin + m_SlotSize);
         }
 
         RectTransform CloneSlot()
@@ -96,5 +100,10 @@ public class InventoryUI : MonoBehaviour
         {
             m_SlotUIList[i].SetSlotAccessibleState(i < accessibleslotcount);
         }
+    }
+
+    public void SetInventoryReference(Inventory inventory)
+    {
+        m_Inventory = inventory;
     }
 }

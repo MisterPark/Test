@@ -20,7 +20,7 @@ public class KeyTest : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.S))
         {
-            TempCross.show(false);
+            TempCross.Show(false);
         }
     }
 }

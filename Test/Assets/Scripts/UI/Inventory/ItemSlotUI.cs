@@ -37,7 +37,7 @@ public class ItemSlotUI : MonoBehaviour
 
     private GameObject m_IconGo;
     private GameObject m_TextGo;
-    private GameObject m_HightlightGo;
+    private GameObject m_HighlightGo;
     public int Index { get; private set; }
 
     public bool HasItem => m_IconImage.sprite != null;
@@ -63,7 +63,6 @@ public class ItemSlotUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
     }
 
     private void InitComponents()
@@ -76,7 +75,7 @@ public class ItemSlotUI : MonoBehaviour
 
         m_IconGo = m_IconRect.gameObject;
         m_TextGo = m_AmountText.gameObject;
-        m_HightlightGo = m_HighlightRect.gameObject;
+        m_HighlightGo = m_HighlightRect.gameObject;
 
         m_SlotImage = GetComponent<Image>();
     }
@@ -88,11 +87,19 @@ public class ItemSlotUI : MonoBehaviour
         m_IconRect.anchorMax = Vector2.one;
 
         m_IconRect.offsetMin = Vector2.one * (m_Padding);
-        m_IconRect.offsetMax = Vector2.one * (m_Padding);
+        m_IconRect.offsetMax = Vector2.one * (-m_Padding);
+
+        m_HighlightRect.pivot = m_IconRect.pivot;
+        m_HighlightRect.anchorMin = m_IconRect.anchorMin;
+        m_HighlightRect.anchorMax = m_IconRect.anchorMax;
+        m_HighlightRect.offsetMin = m_IconRect.offsetMin;
+        m_HighlightRect.offsetMax = m_IconRect.offsetMax;
 
         m_IconImage.raycastTarget = false;
+        m_HighlightImage.raycastTarget = false;
 
         HideIcon();
+        m_HighlightGo.SetActive(false);
     }
     private void ShowIcon() => m_IconGo.SetActive(true);
     private void HideIcon() => m_IconGo.SetActive(false);

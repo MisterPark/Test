@@ -20,7 +20,7 @@ public class UI_Crosshair : MonoBehaviour
         
     }
 
-    public void show(bool bshow)
+    public void Show(bool bshow)
     {
         Color TempColor = CrossImage.color;
         if (bshow)
