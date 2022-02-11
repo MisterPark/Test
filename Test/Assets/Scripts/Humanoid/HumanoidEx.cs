@@ -65,7 +65,7 @@ public enum BoneType
     RightBust1,
     RightBust2,
 }
-public class Humanoid : MonoBehaviour
+public class HumanoidEx : MonoBehaviour
 {
     [SerializeField] List<GameObject> bones = new List<GameObject>();
     public List<GameObject> Bones {get {return bones;}}

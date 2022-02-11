@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-[CustomEditor(typeof(Humanoid))]
+[CustomEditor(typeof(HumanoidEx))]
 public class HumanoidEditor : Editor
 {
     public override void OnInspectorGUI()
@@ -18,10 +18,10 @@ public class HumanoidEditor : Editor
 
     private void SetBone()
     {
-        Humanoid humanoid = (Humanoid)target;
+        HumanoidEx humanoid = (HumanoidEx)target;
 
         humanoid.Bones.Clear();
-        GameObject root = humanoid.gameObject.transform.Find("Root").gameObject;
+        GameObject root = FindRoot(humanoid.gameObject);
         for (int i = 0; i < Extension.boneNames.Count; i++) 
         {
             humanoid.Bones.Add(null);
@@ -31,7 +31,7 @@ public class HumanoidEditor : Editor
 
     private void SetBone(GameObject bone)
     {
-        Humanoid humanoid = (Humanoid)target;
+        HumanoidEx humanoid = (HumanoidEx)target;
         
         int count = bone.transform.childCount;
         for(int i = 0; i < count; i++)
@@ -43,11 +43,34 @@ public class HumanoidEditor : Editor
                 if (string.IsNullOrEmpty(boneName)) continue;
                 int index = (int)boneName.ToBoneType();
                 
-                child.name = boneName;
+                //child.name = boneName;
                 humanoid.Bones[index] = child;
                 SetBone(child);
             }
             
         }
+    }
+
+    private GameObject FindRoot(GameObject bone)
+    {
+        Transform root = bone.transform.Find("Root");
+        if(root != null)
+        {
+            return root.gameObject;
+        }
+
+        int count = bone.transform.childCount;
+        for (int i = 0; i < count; i++)
+        {
+            GameObject child = bone.transform.GetChild(i).gameObject;
+            if (child == null) continue;
+            GameObject childRoot = FindRoot(child);
+            if(childRoot != null)
+            {
+                return childRoot;
+            }
+        }
+
+        return null;
     }
 }
