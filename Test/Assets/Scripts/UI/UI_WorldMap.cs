@@ -5,14 +5,19 @@ using UnityEngine;
 public class UI_WorldMap : MonoBehaviour
 {
     public GameObject WorldMapPanel;
+    public GameObject outline;
+    public GameObject outlineText;
+    public GameObject centerCursor;
 
     private float scale = 1f;
     private float scaleMax = 5f;
     private float scaleMin = 1f;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        outline.GetComponent<RectTransform>().sizeDelta = transform.GetComponent<RectTransform>().sizeDelta;
+        InitOutlineSize();
     }
 
     // Update is called once per frame
@@ -21,7 +26,7 @@ public class UI_WorldMap : MonoBehaviour
         float hor = Input.GetAxis("Horizontal");
         float ver = Input.GetAxis("Vertical");
         float mouseScrollY = Input.mouseScrollDelta.y;
-        float speed = 15f;
+        float speed = 30f;
         if (Input.GetKeyDown(KeyCode.M))
         {
             WorldMapPanel.SetActive(!WorldMapPanel.activeSelf);
@@ -33,20 +38,26 @@ public class UI_WorldMap : MonoBehaviour
             float maxHor = displaySize.x * 0.5f * (scale - 1) / scale;
             float maxVer = displaySize.y * 0.5f * (scale - 1) / scale;
             Vector3 localPos = WorldMapPanel.transform.localPosition;
-            Debug.Log(maxHor.ToString());
-            if (localPos.x > maxHor)
-                if (hor > 0f)
-                    hor = 0f;
-            if (localPos.x < maxHor * -1f)
-                if (hor < 0f)
-                    hor = 0f;
-            if (localPos.y > maxVer)
-                if (ver > 0f)
-                    ver = 0f;
-            if (localPos.y < maxVer * -1f)
-                if (ver < 0f)
-                    ver = 0f;
-            WorldMapPanel.transform.Translate(hor * speed * Time.deltaTime, ver * speed * Time.deltaTime, 0f);
+            if(Input.GetKey(KeyCode.W))
+            {
+                if(localPos.y < maxVer)
+                    WorldMapPanel.transform.Translate(0f, speed * scale * Time.deltaTime, 0f);
+            }
+            if (Input.GetKey(KeyCode.S))
+            {
+                if (localPos.y > -maxVer)
+                    WorldMapPanel.transform.Translate(0f, -speed* scale * Time.deltaTime, 0f);
+            }
+            if (Input.GetKey(KeyCode.A))
+            {
+                if(localPos.x > -maxHor)
+                    WorldMapPanel.transform.Translate(-speed * scale * Time.deltaTime, 0f, 0f);
+            }
+            if (Input.GetKey(KeyCode.D))
+            {
+                if (localPos.x < maxHor)
+                    WorldMapPanel.transform.Translate(speed * scale * Time.deltaTime, 0f, 0f);
+            }
 
             //Zoom In/Out
             if (mouseScrollY > 0f)
@@ -64,5 +75,12 @@ public class UI_WorldMap : MonoBehaviour
                 WorldMapPanel.transform.localScale = new Vector3(scale, scale, scale);
             }
         }
+    }
+
+    private void InitOutlineSize()
+    {
+        Vector2 displaySize = transform.GetComponent<RectTransform>().sizeDelta;
+        float size = displaySize.y * 0.0925f * 0.5f;
+        outlineText.transform.localPosition = new Vector3(displaySize.x / 6f, displaySize.y * -0.5f + size);
     }
 }
