@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 628823619822628847}
-  - component: {fileID: 628823619822628846}
+  - component: {fileID: 2953051155765658006}
   m_Layer: 0
-  m_Name: SpawnManager
+  m_Name: SpotSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -36,7 +36,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &628823619822628846
+--- !u!114 &2953051155765658006
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -48,18 +48,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4a2490eaba7b7f4db77d9d09580cc65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxCount: 6
-  monsterCount: 0
-  spawnTime: 2
-  curTime: 0
+  prefabs:
+  - {fileID: 1021667584126074188, guid: 6dd260686b7b5214a850b94136a0a9d3, type: 3}
+  spawnCount: 0
   spawnPoints:
   - {fileID: 183696208530186760}
   - {fileID: 1927938761485146002}
   - {fileID: 1470227492136043244}
   - {fileID: 2453594825603938667}
   - {fileID: 7698661972950374171}
-  isSpawn: 
-  monster: {fileID: 8982021320105017214, guid: 6d8855c9679c3ff42b80fd3f2671dd13, type: 3}
 --- !u!1 &1213823350818560700
 GameObject:
   m_ObjectHideFlags: 0

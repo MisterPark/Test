@@ -8,13 +8,7 @@ public class ObjectPool : MonoBehaviour
     private static ObjectPool _instance;
 
     public static ObjectPool Instance { get { return _instance; } }
-
-
-    
-
-
     [SerializeField] List<GameObject> prefabs;
-    
     Dictionary<string, Stack<GameObject>> _pools = new Dictionary<string, Stack<GameObject>>();
     private void Awake()
     {

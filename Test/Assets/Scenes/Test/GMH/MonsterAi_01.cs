@@ -27,4 +27,20 @@ public class MonsterAi_01 : MonsterController
     {
         base.Update();
     }
+
+    protected override bool Attack()
+    {
+        base.Attack();
+        
+        DirectedToPlayer();
+        if (animator.GetInteger("Attack") == -1)
+        {
+
+            animator.SetInteger("Attack", 0);
+            Vector3 tempPos = gameObject.transform.position + (gameObject.transform.forward * AttackRange);
+            tempPos.y += 0.7f;
+            DamageObjectController.Create_DamageObject(UnitStat.Team.Enemy, tempPos, 0.5f, 1.2f, 15f);
+        }
+        return true;
+    }
 }
