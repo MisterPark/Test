@@ -193,6 +193,7 @@ public class PlayerController : UnitController
                 stats.Hp = stats.MaxHp;      
             }
         }
+        //TODO 레그돌, 애니메이션 레이어로 무기종류 등ㄷ으등ㄹ등
     }
 
     public override void Ani_Run(AniMotion timing, Animator animator)
