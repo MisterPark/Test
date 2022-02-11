@@ -24,7 +24,7 @@ public class PlayerController : UnitController
         Move();
         Idle();
         Test();
-        
+        Calc_Time();
     }
 
     // Camera 방향으로 Player 방향 변경
@@ -37,6 +37,13 @@ public class PlayerController : UnitController
         direction = transform.forward;
     }
 
+    private void Calc_Time()
+    {
+        if(stats.invincibilityTime > 0f)
+        {
+            stats.invincibilityTime -= Time.deltaTime;
+        }
+    }
     void Jump()
     {
         if (!animator.GetBool("MovePossible"))
@@ -140,7 +147,7 @@ public class PlayerController : UnitController
         }
         else
         {
-            if(Input.GetMouseButtonDown(0) && aniStateInfo.normalizedTime >= 0.4f)
+            if (Input.GetMouseButtonDown(0) && aniStateInfo.normalizedTime >= 0.4f)
             {
                 animator.SetBool("AttackReserve", true);
             }
@@ -163,14 +170,6 @@ public class PlayerController : UnitController
                     //Forward_readjustment();
                     animator.SetInteger("Block", 0); // 자동으로 MovePossible 도 False (다음 프레임)
                 }
-            }
-        }
-        else
-        {
-
-            if (!Input.GetMouseButton(1))
-            {
-                animator.SetInteger("Block", 3);
             }
         }
     }
@@ -216,11 +215,34 @@ public class PlayerController : UnitController
         {
             case AniMotion.Enter:
                 {
-                    animator.SetFloat("AttackSpeed", 1.5f);
+                    animator.SetFloat("AttackSpeed", stats.AttackSpeed);
                     break;
                 }
             case AniMotion.Update:
                 {
+                    break;
+                }
+            case AniMotion.Exit:
+                {
+                    break;
+                }
+        }
+    }
+    public override void Ani_Block_02(AniMotion timing, Animator animator)
+    {
+        // 막고있는 상태
+        switch (timing)
+        {
+            case AniMotion.Enter:
+                {
+                    break;
+                }
+            case AniMotion.Update:
+                {
+                    if (!Input.GetMouseButton(1))
+                    {
+                        animator.SetInteger("Block", 3);
+                    }
                     break;
                 }
             case AniMotion.Exit:
@@ -240,12 +262,20 @@ public class PlayerController : UnitController
 
     public override float Damaged(GameObject _otherHost, GameObject _other, float _value)
     {
+        if (stats.invincibilityTime > 0f)
+            return 0;
+
         if(animator.GetInteger("Block") == 2)
         {
             if (IsTargetInSight(_otherHost.transform.position))
             {
                 _value = 0f;
             }
+        }
+        if (_value != 0f)
+        {
+            animator.SetInteger("Impact", 0);
+            stats.invincibilityTime = stats.basic_InvincibilityTime;
         }
         return _value;
     }
