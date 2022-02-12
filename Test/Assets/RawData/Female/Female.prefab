@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8365554697056141471}
   m_Layer: 0
-  m_Name: J_Bip_L_Little2
+  m_Name: LeftLittleIntermediate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -293,8 +293,8 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 8415946362015039684}
   m_AABB:
-    m_Center: {x: 0.0028868392, y: 1.4285651, z: -0.018941581}
-    m_Extent: {x: 0.11104661, y: 0.12946641, z: 0.124091506}
+    m_Center: {x: 0.0028866976, y: 1.4285651, z: -0.018941656}
+    m_Extent: {x: 0.111046664, y: 0.12946641, z: 0.124091506}
   m_DirtyAABB: 0
 --- !u!1 &137440338259181105
 GameObject:
@@ -307,7 +307,7 @@ GameObject:
   - component: {fileID: 6135049149015043725}
   - component: {fileID: 8501480279106778429}
   m_Layer: 0
-  m_Name: J_Bip_C_UpperChest
+  m_Name: Chest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -362,7 +362,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5060161677293899818}
   m_Layer: 0
-  m_Name: J_Bip_R_Middle2
+  m_Name: RightMiddleIntermediate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -393,7 +393,7 @@ GameObject:
   m_Component:
   - component: {fileID: 589727655656898191}
   m_Layer: 0
-  m_Name: J_Bip_L_Little3
+  m_Name: LeftLittleDistal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -546,7 +546,7 @@ GameObject:
   - component: {fileID: 3861870847985181333}
   - component: {fileID: 4584829235263329023}
   m_Layer: 0
-  m_Name: J_Bip_C_Head
+  m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -691,7 +691,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3027073866625541294}
   m_Layer: 0
-  m_Name: J_Bip_L_Ring1
+  m_Name: LeftRingProximal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -970,7 +970,7 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 8415946362015039684}
   m_AABB:
-    m_Center: {x: -0.00011187792, y: 1.4282609, z: 0.033478916}
+    m_Center: {x: -0.00011207163, y: 1.4282609, z: 0.03347884}
     m_Extent: {x: 0.0968781, y: 0.111385226, z: 0.073865905}
   m_DirtyAABB: 0
 --- !u!1 &1426467675014235736
@@ -983,7 +983,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7853396593033097694}
   m_Layer: 0
-  m_Name: J_Bip_R_Index1
+  m_Name: RightIndexProximal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1077,7 +1077,7 @@ GameObject:
   - component: {fileID: 7238301129316182354}
   - component: {fileID: 2816127053255205524}
   m_Layer: 0
-  m_Name: J_Bip_R_Hand
+  m_Name: RightHand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1128,7 +1128,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1579813269282872917}
   m_Layer: 0
-  m_Name: J_Bip_C_Hips
+  m_Name: Hips
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1161,7 +1161,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3175533320104925293}
   m_Layer: 0
-  m_Name: J_Adj_L_FaceEye
+  m_Name: LeftEye
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1345,7 +1345,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8037467347295360648}
   m_Layer: 0
-  m_Name: J_Bip_R_Shoulder
+  m_Name: RightShoulder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1407,7 +1407,7 @@ GameObject:
   - component: {fileID: 8887514391657577917}
   - component: {fileID: 6086101563399172897}
   m_Layer: 0
-  m_Name: J_Bip_R_LowerArm
+  m_Name: LeftLowerArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1460,7 +1460,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1598352240554744199}
   m_Layer: 0
-  m_Name: J_Bip_R_Foot
+  m_Name: RightFoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1491,7 +1491,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7267135312524710023}
   m_Layer: 0
-  m_Name: J_Bip_R_Little1
+  m_Name: LeftLittleProximal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1522,7 +1522,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3520937200967395789}
   m_Layer: 0
-  m_Name: J_Bip_R_Index3
+  m_Name: RightIndexDistal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1614,7 +1614,7 @@ GameObject:
   m_Component:
   - component: {fileID: 481671527873212108}
   m_Layer: 0
-  m_Name: J_Bip_R_Ring1
+  m_Name: RightRingProximal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1736,7 +1736,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9201899136195346751}
   m_Layer: 0
-  m_Name: J_Bip_L_Shoulder
+  m_Name: LeftShoulder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1767,7 +1767,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2357512862307676720}
   m_Layer: 0
-  m_Name: J_Bip_R_Ring3
+  m_Name: RightRingDistal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1797,7 +1797,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7579069714704945511}
   m_Layer: 0
-  m_Name: J_Bip_L_Thumb3
+  m_Name: LeftThumbDistal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1827,7 +1827,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8908495957623517986}
   m_Layer: 0
-  m_Name: J_Bip_R_Thumb3
+  m_Name: RightThumbDistal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1894,6 +1894,7 @@ GameObject:
   - component: {fileID: 8423007257949499059}
   - component: {fileID: 7224609755409614903}
   - component: {fileID: 5797539059705146309}
+  - component: {fileID: 8311846022664053329}
   m_Layer: 0
   m_Name: Female
   m_TagString: Untagged
@@ -1957,7 +1958,7 @@ Animator:
   m_GameObject: {fileID: 3845187553232478778}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 9f8cf9feb861b1c4cb9b1212d3a9fda8, type: 2}
-  m_Controller: {fileID: 9100000, guid: a42781f0cbe841f4ca2a9c4a22ef648f, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2177,6 +2178,19 @@ MonoBehaviour:
       m_RotationOrder: 4
     CurveXRangeDegree: 90
     CurveYRangeDegree: 10
+--- !u!114 &8311846022664053329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3845187553232478778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c35f43d772ecdc42b455a2ecd7262f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bones: []
 --- !u!1 &3857780126070011436
 GameObject:
   m_ObjectHideFlags: 0
@@ -2188,7 +2202,7 @@ GameObject:
   - component: {fileID: 7695104529146210315}
   - component: {fileID: 8684764755956966690}
   m_Layer: 0
-  m_Name: J_Bip_R_UpperArm
+  m_Name: RightUpperArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2239,7 +2253,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3524844122388177281}
   m_Layer: 0
-  m_Name: J_Bip_R_Little3
+  m_Name: LeftLittleDistal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2270,7 +2284,7 @@ GameObject:
   - component: {fileID: 1435963584594774555}
   - component: {fileID: 3414995712188502546}
   m_Layer: 0
-  m_Name: J_Bip_C_Spine
+  m_Name: Spine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2317,7 +2331,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1630671015771199818}
   m_Layer: 0
-  m_Name: J_Bip_L_Thumb1
+  m_Name: LeftThumbProximal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2349,7 +2363,7 @@ GameObject:
   - component: {fileID: 5207178890901624715}
   - component: {fileID: 8960944414905774026}
   m_Layer: 0
-  m_Name: J_Bip_C_Neck
+  m_Name: Neck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2427,7 +2441,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6933117681719135496}
   m_Layer: 0
-  m_Name: J_Bip_R_Thumb1
+  m_Name: RightThumbProximal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2550,7 +2564,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1780928874424983605}
   m_Layer: 0
-  m_Name: J_Bip_L_Thumb2
+  m_Name: LeftThumbIntermediate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2643,7 +2657,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4035441529882868576}
   m_Layer: 0
-  m_Name: J_Bip_C_Chest
+  m_Name: Chest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2674,7 +2688,7 @@ GameObject:
   m_Component:
   - component: {fileID: 463416571846398259}
   m_Layer: 0
-  m_Name: J_Bip_L_LowerLeg
+  m_Name: LeftLowerLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2708,7 +2722,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4749214304414194491}
   m_Layer: 0
-  m_Name: J_Bip_L_Ring3
+  m_Name: LeftRingDistal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2954,8 +2968,8 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 8415946362015039684}
   m_AABB:
-    m_Center: {x: -0.000111699104, y: 0.77331764, z: 0.0011987239}
-    m_Extent: {x: 0.6849427, y: 0.77369946, z: 0.13111869}
+    m_Center: {x: -0.0001116395, y: 0.77331764, z: 0.0011987239}
+    m_Extent: {x: 0.6849429, y: 0.77369946, z: 0.13111876}
   m_DirtyAABB: 0
 --- !u!1 &5194203150303024344
 GameObject:
@@ -3058,7 +3072,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7847381243571759100}
   m_Layer: 0
-  m_Name: J_Bip_L_Middle1
+  m_Name: LeftMiddleProximal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3182,7 +3196,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1736166338924461271}
   m_Layer: 0
-  m_Name: J_Bip_R_Ring2
+  m_Name: RightRingIntermediate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3396,7 +3410,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9200943150706424400}
   m_Layer: 0
-  m_Name: J_Bip_R_Middle3
+  m_Name: RightMiddleDistal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3426,7 +3440,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5893815140291261092}
   m_Layer: 0
-  m_Name: J_Bip_L_Index3
+  m_Name: LeftIndexDistal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3456,7 +3470,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7071010065022840284}
   m_Layer: 0
-  m_Name: J_Bip_R_Middle1
+  m_Name: RightMiddleProximal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3953,7 +3967,7 @@ GameObject:
   - component: {fileID: 1877885518542042254}
   - component: {fileID: 5020459277877619686}
   m_Layer: 0
-  m_Name: J_Bip_L_LowerArm
+  m_Name: LeftLowerArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4037,7 +4051,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5601688801339930576}
   m_Layer: 0
-  m_Name: J_Bip_L_Foot
+  m_Name: LeftFoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4220,7 +4234,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7130447034931868243}
   m_Layer: 0
-  m_Name: J_Bip_L_Index2
+  m_Name: LeftIndexIntermediate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4252,7 +4266,7 @@ GameObject:
   - component: {fileID: 1183056126411898955}
   - component: {fileID: 5233660897879179089}
   m_Layer: 0
-  m_Name: J_Bip_L_UpperLeg
+  m_Name: LeftUpperLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4307,7 +4321,7 @@ GameObject:
   - component: {fileID: 5454734612645724234}
   - component: {fileID: 1587009017552416055}
   m_Layer: 0
-  m_Name: J_Bip_L_UpperArm
+  m_Name: LeftUpperArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4358,7 +4372,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8565137988638132544}
   m_Layer: 0
-  m_Name: J_Bip_R_Thumb2
+  m_Name: RightThumbIntermediate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4420,7 +4434,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7194935193977149460}
   m_Layer: 0
-  m_Name: J_Bip_R_Index2
+  m_Name: RightIndexIntermediate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4451,7 +4465,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5784079211136872068}
   m_Layer: 0
-  m_Name: J_Bip_L_Middle3
+  m_Name: LeftMiddleDistal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4481,7 +4495,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7210822074342137985}
   m_Layer: 0
-  m_Name: J_Bip_L_Middle2
+  m_Name: LeftMiddleIntermediate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4543,7 +4557,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2793485465278544049}
   m_Layer: 0
-  m_Name: J_Bip_L_Index1
+  m_Name: LeftIndexProximal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4604,7 +4618,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3711579720733166813}
   m_Layer: 0
-  m_Name: J_Bip_L_Ring2
+  m_Name: LeftRingIntermediate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4635,7 +4649,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3632594582300944786}
   m_Layer: 0
-  m_Name: J_Bip_R_LowerLeg
+  m_Name: LeftLowerLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4729,7 +4743,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1480085897226278902}
   m_Layer: 0
-  m_Name: J_Bip_R_Little2
+  m_Name: LeftLittleIntermediate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4790,7 +4804,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7542979571174322364}
   m_Layer: 0
-  m_Name: J_Adj_R_FaceEye
+  m_Name: RightEye
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4821,7 +4835,7 @@ GameObject:
   - component: {fileID: 252854890728346724}
   - component: {fileID: 7041188460164102673}
   m_Layer: 0
-  m_Name: J_Bip_R_UpperLeg
+  m_Name: LeftUpperLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4876,7 +4890,7 @@ GameObject:
   - component: {fileID: 4926617467297605005}
   - component: {fileID: 5782430850754942454}
   m_Layer: 0
-  m_Name: J_Bip_L_Hand
+  m_Name: LeftHand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4958,7 +4972,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7114817810751132667}
   m_Layer: 0
-  m_Name: J_Bip_L_Little1
+  m_Name: LeftLittleProximal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -61,7 +61,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9294c829a8476414995f7b89ee949a54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  JumpCheck: 0
+  team: 0
   MaxHp: 0
   Hp: 0
   MaxMp: 0
@@ -71,7 +71,8 @@ MonoBehaviour:
   RawMoveSpeed: 0
   MoveSpeed: 0
   JumpPower: 0
-  Velocity: {x: 0, y: 0, z: 0}
+  basic_InvincibilityTime: 0
+  invincibilityTime: 0
 --- !u!114 &1392301908031365853
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -84,6 +85,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea0b6e3428608194da9a55ea6db0c71f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lifeTime: 0
+  host: {fileID: 0}
 --- !u!54 &1034874139
 Rigidbody:
   m_ObjectHideFlags: 0

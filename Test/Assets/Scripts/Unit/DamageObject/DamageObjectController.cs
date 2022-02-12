@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class DamageObjectController : UnitController
 {
-    public float lifeTime;
+    [HideInInspector] public float lifeTime;
     List<GameObject> DamagedList =  new List<GameObject>();
+    [HideInInspector] public GameObject host;
     //static protected GameObject damageObject = Resources.Load("DamageObject/DamageObject") as GameObject;
     
     // Start is called before the first frame update
@@ -32,6 +33,8 @@ public class DamageObjectController : UnitController
 
         if (stats.team == otherUnit.stats.team || UnitStat.Team.Natural == otherUnit.stats.team)
             return;
+        if (otherUnit.stats.Hp <= 0f)
+            return;
 
         foreach (GameObject damaged in DamagedList)
         {
@@ -39,7 +42,9 @@ public class DamageObjectController : UnitController
                 return;
         }
 
-        otherUnit.stats.Hp -= stats.AttackDamage;
+        float damage = stats.AttackDamage;
+        damage = otherUnit.controller.Damaged(host, gameObject, damage);
+        otherUnit.stats.Hp -= damage;
         DamagedList.Add(other.gameObject);
     }
 
@@ -50,7 +55,7 @@ public class DamageObjectController : UnitController
         stats.team = UnitStat.Team.Enemy;
     }
 
-    public static void Create_DamageObject(UnitStat.Team _team, Vector3 _pos, float _scale, float _lifeTime, float _damage)
+    public static void Create_DamageObject(GameObject _host, UnitStat.Team _team, Vector3 _pos, float _scale, float _lifeTime, float _damage)
     {
         GameObject newDamageObject = Instantiate(Resources.Load("DamageObject/DamageObject")) as GameObject;
         newDamageObject.transform.position = _pos;
@@ -59,6 +64,7 @@ public class DamageObjectController : UnitController
         newDamageObjectUnit.stats.team = _team;
         newDamageObjectUnit.stats.AttackDamage = _damage;
         DamageObjectController newDamageObjectController = newDamageObject.GetComponent<DamageObjectController>();
+        newDamageObjectController.host = _host;
         newDamageObjectController.lifeTime = _lifeTime;
 
     }
