@@ -24,7 +24,7 @@ public class PlayerController : UnitController
         Move();
         Idle();
         Test();
-        
+        Calc_Time();
     }
 
     // Camera 방향으로 Player 방향 변경
@@ -37,6 +37,13 @@ public class PlayerController : UnitController
         direction = transform.forward;
     }
 
+    private void Calc_Time()
+    {
+        if(stats.invincibilityTime > 0f)
+        {
+            stats.invincibilityTime -= Time.deltaTime;
+        }
+    }
     void Jump()
     {
         if (!animator.GetBool("MovePossible"))
@@ -98,10 +105,6 @@ public class PlayerController : UnitController
         // Rotate
         transform.LookAt(transform.position + direction);
 
-        //float inputX = Input.GetAxis("Horizontal");
-        //float inputZ = Input.GetAxis("Vertical");
-        //Vector3 velocity = new Vector3(inputX, 0, inputZ);
-        //stats.Velocity = velocity;
         
         if(moveDirection == Vector3.zero)
             animator.SetBool("Walk", false);
@@ -137,14 +140,14 @@ public class PlayerController : UnitController
                     animator.SetInteger("Attack", 0); // 자동으로 MovePossible 도 False (다음 프레임)
                     Vector3 tempPos = gameObject.transform.position + (gameObject.transform.forward * 1.2f);
                     tempPos.y += 0.7f;
-                    DamageObjectController.Create_DamageObject(UnitStat.Team.Player, tempPos, 1.5f, 1.2f, 15f);
+                    DamageObjectController.Create_DamageObject(gameObject, UnitStat.Team.Player, tempPos, 1.5f, 1.2f, 15f);
                     return true;
                 }
             }
         }
         else
         {
-            if(Input.GetMouseButtonDown(0) && aniStateInfo.normalizedTime >= 0.4f)
+            if (Input.GetMouseButtonDown(0) && aniStateInfo.normalizedTime >= 0.4f)
             {
                 animator.SetBool("AttackReserve", true);
             }
@@ -169,14 +172,6 @@ public class PlayerController : UnitController
                 }
             }
         }
-        else
-        {
-
-            if (!Input.GetMouseButton(1))
-            {
-                animator.SetInteger("Block", 3);
-            }
-        }
     }
 
     void Test()
@@ -189,7 +184,16 @@ public class PlayerController : UnitController
         {
             stats.Mp -= 10;
         }
-        
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            //부활
+            if (animator.GetBool("IsDead"))
+            {
+                animator.SetBool("IsDead", false);
+                stats.Hp = stats.MaxHp;      
+            }
+        }
+        //TODO 레그돌, 애니메이션 레이어로 무기종류 등ㄷ으등ㄹ등
     }
 
     public override void Ani_Run(AniMotion timing, Animator animator)
@@ -220,11 +224,34 @@ public class PlayerController : UnitController
         {
             case AniMotion.Enter:
                 {
-                    animator.SetFloat("AttackSpeed", 1.5f);
+                    animator.SetFloat("AttackSpeed", stats.AttackSpeed);
                     break;
                 }
             case AniMotion.Update:
                 {
+                    break;
+                }
+            case AniMotion.Exit:
+                {
+                    break;
+                }
+        }
+    }
+    public override void Ani_Block_02(AniMotion timing, Animator animator)
+    {
+        // 막고있는 상태
+        switch (timing)
+        {
+            case AniMotion.Enter:
+                {
+                    break;
+                }
+            case AniMotion.Update:
+                {
+                    if (!Input.GetMouseButton(1))
+                    {
+                        animator.SetInteger("Block", 3);
+                    }
                     break;
                 }
             case AniMotion.Exit:
@@ -239,6 +266,65 @@ public class PlayerController : UnitController
         if (collision.gameObject.CompareTag("Terrain"))
         {
             animator.SetBool("Jump", false);
+        }
+    }
+
+    public override float Damaged(GameObject _otherHost, GameObject _other, float _value)
+    {
+        if (stats.invincibilityTime > 0f)
+            return 0;
+
+        if(animator.GetInteger("Block") == 2)
+        {
+            if (IsTargetInSight(_otherHost.transform.position))
+            {
+                _value = 0f;
+            }
+        }
+        if (_value != 0f)
+        {
+            animator.SetInteger("Impact", 0);
+            stats.invincibilityTime = stats.basic_InvincibilityTime;
+        }
+        return _value;
+    }
+
+    public override void Ani_Impact(AniMotion timing, Animator animator)
+    {
+        switch (timing)
+        {
+            case AniMotion.Enter:
+                {
+                    if (stats.Hp <= 0f)
+                        animator.SetBool("IsDead", true);
+                    break;
+                }
+            case AniMotion.Update:
+                {
+                    break;
+                }
+            case AniMotion.Exit:
+                {
+                    break;
+                }
+        }
+    }
+    public override void Ani_Death(AniMotion timing, Animator animator)
+    {
+        switch (timing)
+        {
+            case AniMotion.Enter:
+                {
+                    break;
+                }
+            case AniMotion.Update:
+                {
+                    break;
+                }
+            case AniMotion.Exit:
+                {
+                    break;
+                }
         }
     }
 }

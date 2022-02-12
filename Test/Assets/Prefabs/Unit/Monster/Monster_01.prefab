@@ -72,7 +72,6 @@ MonoBehaviour:
   RawMoveSpeed: 3
   MoveSpeed: 4
   JumpPower: 7
-  Velocity: {x: 0, y: 0, z: 0}
 --- !u!114 &1088618187303112993
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -100,7 +99,10 @@ MonoBehaviour:
   SearchDistance: 5
   ApproachDistance: 1
   AttackRange: 1
+  SpawnRange: 15
+  SpawnPosition: {x: 0, y: 0, z: 0}
   isSearch: 0
+  isOutRange: 0
 --- !u!54 &462730144869834593
 Rigidbody:
   m_ObjectHideFlags: 0
