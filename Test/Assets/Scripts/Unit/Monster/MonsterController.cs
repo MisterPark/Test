@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum MonsterState { Idle, Move, Attack,}
+//public enum MonsterState { Idle, Move, Attack,}
 
 public class MonsterController : UnitController
 {
@@ -15,13 +15,13 @@ public class MonsterController : UnitController
     public float AttackRange;
     public float SpawnRange;
     public Vector3 SpawnPosition;
-    private MonsterState monsterState;
+    //private MonsterState monsterState;
     [SerializeField] bool isSearch;
     [SerializeField] bool isOutRange;
     Vector3 direction;
     float distance;
 
-    GameObject player;
+    protected GameObject target;
 
 
     protected void OnEnable()
@@ -34,11 +34,11 @@ public class MonsterController : UnitController
 
     protected override void Start()
     {
-        monsterState = MonsterState.Idle;
+        //monsterState = MonsterState.Idle;
         isOutRange = false;
         stat = GetComponent<UnitStat>();
         animator = (transform.Find("Mesh").gameObject).transform.GetChild(0).gameObject.GetComponent<Animator>();
-        player = GameObject.Find("Player");
+        target = GameObject.Find("Player");
         SpawnPosition = transform.position;
     }
 
@@ -73,18 +73,18 @@ public class MonsterController : UnitController
         }
     }
 
-    public void ChangeState(MonsterState newState)
-    {
-        if (newState == monsterState)
-            return;
-        StopCoroutine(monsterState.ToString());
-        monsterState = newState;
-        StartCoroutine(newState.ToString());
-    }
+    //public void ChangeState(MonsterState newState)
+    //{
+    //    if (newState == monsterState)
+    //        return;
+    //    StopCoroutine(monsterState.ToString());
+    //    monsterState = newState;
+    //    StartCoroutine(newState.ToString());
+    //}
 
       protected void Search()
     {
-        distance = Vector3.Distance(transform.position, player.transform.position);
+        distance = Vector3.Distance(transform.position, target.transform.position);
         if (distance < SearchDistance)
         {
             isSearch = true;
@@ -116,7 +116,7 @@ public class MonsterController : UnitController
     }
     protected void DirectedToPlayer()
     {
-        direction = player.transform.position - transform.position;
+        direction = target.transform.position - transform.position;
         direction.Normalize();
         direction.y = 0;
         transform.forward = direction;
@@ -131,13 +131,13 @@ public class MonsterController : UnitController
 
     protected void Move()
     {
-        ChangeState(MonsterState.Move);
-        distance = Vector3.Distance(transform.position, player.transform.position);
+        //ChangeState(MonsterState.Move);
+        distance = Vector3.Distance(transform.position, target.transform.position);
         if (distance > ApproachDistance&&animator.GetInteger("Attack")==-1)
         {
             animator.SetBool("Walk", true);
             stat.MoveSpeed = stat.RawMoveSpeed;
-            direction = player.transform.position - transform.position;
+            direction = target.transform.position - transform.position;
             direction.Normalize();
             direction.y = 0;
             transform.forward = direction;
@@ -146,7 +146,8 @@ public class MonsterController : UnitController
         else
         {
             //»ç°Å¸®
-            ChangeState(MonsterState.Attack);
+            //ChangeState(MonsterState.Attack);
+            Attack();
             stat.MoveSpeed = 0;
         }
     }

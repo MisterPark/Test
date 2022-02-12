@@ -103,6 +103,8 @@ MonoBehaviour:
   RawMoveSpeed: 3
   MoveSpeed: 4
   JumpPower: 7
+  basic_InvincibilityTime: 0
+  invincibilityTime: 0
 --- !u!114 &7414116455790677825
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -134,8 +136,8 @@ MonoBehaviour:
   SpawnPosition: {x: 0, y: 0, z: 0}
   isSearch: 0
   isOutRange: 0
-  arrows:
-  - {fileID: 2586462189181946770, guid: f703aa3506807dc4cb31b5e692c1d675, type: 3}
+  projectiles:
+  - {fileID: 7123698156139392758, guid: 0475dcd1d9c37a64da985f5bd2f0658e, type: 3}
 --- !u!54 &8040127405188677889
 Rigidbody:
   m_ObjectHideFlags: 0

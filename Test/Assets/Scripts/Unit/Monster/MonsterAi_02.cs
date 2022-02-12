@@ -5,8 +5,8 @@ using UnityEngine;
 public class MonsterAi_02 : MonsterController
 {
 
-    [SerializeField] List<GameObject> arrows;
-    List<GameObject> arrowList;
+    [SerializeField] List<GameObject> projectiles;
+    List<GameObject> projectileList;
     // Start is called before the first frame update
     protected void OnEnable()
     {
@@ -35,24 +35,26 @@ public class MonsterAi_02 : MonsterController
         if (animator.GetInteger("Attack") == -1)
         {
             animator.SetInteger("Attack", 0);
-            int index = Random.Range(0, arrows.Count - 1);
-            GameObject gameObject = ObjectPool.Instance.Allocate(arrows[index].name);
+            int index = Random.Range(0, projectiles.Count - 1);
+            Debug.Log(projectiles.Count);
+            GameObject gameObject = ObjectPool.Instance.Allocate(projectiles[index].name);
             if (gameObject == null)
             {
                 Debug.LogError("can't find GameObject");
                 return false;
             }
-            Arrow arrow = gameObject.GetComponent<Arrow>();
-            if(arrow == null)
+            Arrow projectile = gameObject.GetComponent<Arrow>();
+            if(projectile == null)
             {
-                Debug.LogError("can't find Arrow");
+                Debug.LogError("can't find Projectile");
                 return false;
             }
-            arrow.shooter = this;
-            gameObject.transform.position = new Vector3(transform.position.x, transform.position.y+0.5f,transform.position.z);
+            projectile.shooter = this;
+            //projectile.target = target;
+            gameObject.transform.position = new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z);
             
             gameObject.transform.forward = transform.forward;
-            arrowList.Add(gameObject);
+            projectileList.Add(gameObject);
         }
 
         return true;
@@ -61,7 +63,7 @@ public class MonsterAi_02 : MonsterController
     public void Remove(GameObject gameObject)
     {
         ObjectPool.Instance.Free(gameObject);
-        arrowList.Remove(gameObject);
+        projectileList.Remove(gameObject);
     }
 
 }
