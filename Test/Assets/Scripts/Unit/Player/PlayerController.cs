@@ -7,11 +7,15 @@ public class PlayerController : UnitController
     private Vector3 direction = Vector3.forward;// 캐릭터가 바라보는 방향, 스킬 사용시 사용 
     public Animator animator;
     AnimatorStateInfo aniStateInfo;
+    public GameObject basicMesh;
+    public GameObject ragDollMesh;
     protected override void Start()
     {
         base.Start();
         Physics.gravity = new Vector3(0f, -10f, 0f);
         animator = (transform.Find("Mesh").gameObject).transform.GetChild(0).gameObject.GetComponent<Animator>();
+        basicMesh = (transform.Find("Mesh").gameObject).transform.GetChild(0).gameObject;
+        ragDollMesh = (transform.Find("Mesh").gameObject).transform.GetChild(1).gameObject;
     }
 
     // Update is called once per frame
@@ -190,10 +194,34 @@ public class PlayerController : UnitController
             if (animator.GetBool("IsDead"))
             {
                 animator.SetBool("IsDead", false);
-                stats.Hp = stats.MaxHp;      
+                stats.Hp = stats.MaxHp;
             }
         }
+        if (Input.GetKey(KeyCode.N))
+        {
+            CopyCharacterTransformToRagdoll(basicMesh.transform, ragDollMesh.transform);
+            basicMesh.SetActive(false);
+            ragDollMesh.SetActive(true);
+            Rigidbody rigid = GetComponent<Rigidbody>();
+            rigid.AddForce(new Vector3(0f, 0f, 20f), ForceMode.Impulse);
+        }
+        else if (Input.GetKey(KeyCode.M))
+        {
+            basicMesh.SetActive(true);
+            ragDollMesh.SetActive(false);
+        }
         //TODO 레그돌, 애니메이션 레이어로 무기종류 등ㄷ으등ㄹ등
+    }
+
+    private void CopyCharacterTransformToRagdoll(Transform origin, Transform ragdoll)
+    {
+        int originChildCount = origin.childCount;
+        for (int i = 0; i < originChildCount; i++)
+        {
+            CopyCharacterTransformToRagdoll(origin.GetChild(i), ragdoll.GetChild(i));
+            ragdoll.GetChild(i).localPosition = origin.GetChild(i).localPosition;
+            ragdoll.GetChild(i).localRotation = origin.GetChild(i).localRotation;
+        }
     }
 
     public override void Ani_Run(AniMotion timing, Animator animator)
