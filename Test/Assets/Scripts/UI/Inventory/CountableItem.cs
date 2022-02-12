@@ -23,5 +23,13 @@ public abstract class CountableItem : Item
         CountableData = data;
         SetAmount(amount);
     }
+
+    public int AddAmountAndGetExcess(int amount)
+    {
+        int nextamount = Amount + amount;
+        SetAmount(nextamount);
+
+        return (nextamount > MaxAmount) ? (nextamount - MaxAmount) : 0;
+    }
     protected abstract CountableItem Clone(int amount);
 }

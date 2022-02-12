@@ -19,9 +19,14 @@ public class InventoryUI : MonoBehaviour
     [SerializeField] private GameObject m_SlotUIPrefab;
     private List<ItemSlotUI> m_SlotUIList = new List<ItemSlotUI>();
 
-    public Sprite Tempsprite;
-
     private Inventory m_Inventory;
+
+    private enum FilterOption
+    {
+        All, Equipment, Portion
+    }
+
+    private FilterOption m_CurrentFilterOption = FilterOption.All;
     // Start is called before the first frame update
     void Start()
     {
@@ -105,5 +110,41 @@ public class InventoryUI : MonoBehaviour
     public void SetInventoryReference(Inventory inventory)
     {
         m_Inventory = inventory;
+    }
+
+    public void SetItemIcon(int index, Sprite icon)
+    {
+        m_SlotUIList[index].SetItem(icon);
+    }
+
+    public void RemoveItem(int index)
+    {
+        m_SlotUIList[index].RemoveItem();
+    }
+
+    public void HideItemAmountText(int index)
+    {
+        m_SlotUIList[index].SetItemAmount(1);
+    }
+    public void UpdateSlotFilterState(int index, ItemData itemdata)
+    {
+        bool isfiltered = true;
+        if (itemdata != null)
+        {
+            switch (m_CurrentFilterOption)
+            {
+                case FilterOption.Equipment:
+                    break;
+                case FilterOption.Portion:
+                    isfiltered = (itemdata is PortionItemData);
+                    break;
+            }
+            m_SlotUIList[index].SetItemAccessibleState(isfiltered);
+        }
+    }
+
+    public void SetItemAmountText(int index, int amount)
+    {
+        m_SlotUIList[index].SetItemAmount(amount);
     }
 }

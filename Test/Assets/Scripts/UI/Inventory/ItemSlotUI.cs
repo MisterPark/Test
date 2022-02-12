@@ -130,6 +130,24 @@ public class ItemSlotUI : MonoBehaviour
         m_IsAccessibleSlot = value;
     }
 
+    public void SetItemAccessibleState(bool value)
+    {
+        if (m_IsAccessibleItem == value)
+        {
+            return;
+        }
+        if (value)
+        {
+            m_IconImage.color = Color.white;
+            m_AmountText.color = Color.white;
+        }
+        else
+        {
+            m_IconImage.color = InaccessibleIconColor;
+            m_AmountText.color = InaccessibleIconColor;
+        }
+        m_IsAccessibleItem = value;
+    }
     public void SetItem(Sprite itemsprite)
     {
         if (itemsprite != null)
@@ -148,5 +166,19 @@ public class ItemSlotUI : MonoBehaviour
         m_IconImage.sprite = null;
         HideIcon();
         HideText();
+    }
+
+    public void SetItemAmount(int amount)
+    {
+        if (HasItem && amount > 1)
+        {
+            ShowText();
+        }
+        else 
+        {
+            HideText();
+        }
+
+        m_AmountText.text = amount.ToString();
     }
 }
