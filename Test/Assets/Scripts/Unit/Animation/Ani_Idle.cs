@@ -11,6 +11,7 @@ public class Ani_Idle : StateMachineBehaviour
     {
         animator.SetBool("MovePossible", true);
         animator.SetInteger("Attack", -1);
+        animator.SetBool("SkillAction", false);
 
         if (unitController == null)
             unitController = animator.transform.parent.parent.GetComponent<UnitController>();

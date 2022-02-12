@@ -318,4 +318,44 @@ public class UnitController : MonoBehaviour
                 }
         }
     }
+
+    // 무기를 바꾸기 직전 분기
+    public virtual void Ani_WeaponChange(AniMotion timing, Animator animator)
+    {
+        switch (timing)
+        {
+            case AniMotion.Enter:
+                {
+                    break;
+                }
+            case AniMotion.Update:
+                {
+                    break;
+                }
+            case AniMotion.Exit:
+                {
+                    break;
+                }
+        }
+    }
+
+    // 무기를 바꾸고 난 이후 처음으로 1번만 탈
+    public virtual void Ani_WeaponChangeAfter(AniMotion timing, Animator animator)
+    {
+        switch (timing)
+        {
+            case AniMotion.Enter:
+                {
+                    break;
+                }
+            case AniMotion.Update:
+                {
+                    break;
+                }
+            case AniMotion.Exit:
+                {
+                    break;
+                }
+        }
+    }
 }

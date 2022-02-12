@@ -142,6 +142,7 @@ public class PlayerController : UnitController
                 {
                     //Forward_readjustment();
                     animator.SetInteger("Attack", 0); // 자동으로 MovePossible 도 False (다음 프레임)
+                    animator.SetBool("SkillAction", true);
                     Vector3 tempPos = gameObject.transform.position + (gameObject.transform.forward * 1.2f);
                     tempPos.y += 0.7f;
                     DamageObjectController.Create_DamageObject(gameObject, UnitStat.Team.Player, tempPos, 1.5f, 1.2f, 15f);
@@ -172,6 +173,7 @@ public class PlayerController : UnitController
                 if (animator.GetBool("MovePossible") && !animator.GetBool("Jump"))
                 {
                     //Forward_readjustment();
+                    animator.SetBool("SkillAction", true);
                     animator.SetInteger("Block", 0); // 자동으로 MovePossible 도 False (다음 프레임)
                 }
             }
@@ -289,33 +291,6 @@ public class PlayerController : UnitController
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Terrain"))
-        {
-            animator.SetBool("Jump", false);
-        }
-    }
-
-    public override float Damaged(GameObject _otherHost, GameObject _other, float _value)
-    {
-        if (stats.invincibilityTime > 0f)
-            return 0;
-
-        if(animator.GetInteger("Block") == 2)
-        {
-            if (IsTargetInSight(_otherHost.transform.position))
-            {
-                _value = 0f;
-            }
-        }
-        if (_value != 0f)
-        {
-            animator.SetInteger("Impact", 0);
-            stats.invincibilityTime = stats.basic_InvincibilityTime;
-        }
-        return _value;
-    }
 
     public override void Ani_Impact(AniMotion timing, Animator animator)
     {
@@ -355,4 +330,33 @@ public class PlayerController : UnitController
                 }
         }
     }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Terrain"))
+        {
+            animator.SetBool("Jump", false);
+        }
+    }
+
+    public override float Damaged(GameObject _otherHost, GameObject _other, float _value)
+    {
+        if (stats.invincibilityTime > 0f)
+            return 0;
+
+        if(animator.GetInteger("Block") == 2)
+        {
+            if (IsTargetInSight(_otherHost.transform.position))
+            {
+                _value = 0f;
+            }
+        }
+        if (_value != 0f)
+        {
+            animator.SetInteger("Impact", 0);
+            animator.SetBool("SkillAction", true);
+            stats.invincibilityTime = stats.basic_InvincibilityTime;
+        }
+        return _value;
+    }
+
 }

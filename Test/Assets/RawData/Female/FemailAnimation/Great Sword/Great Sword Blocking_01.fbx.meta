@@ -11,7 +11,7 @@ ModelImporter:
     second: FemailRun
   - first:
       74: -203655887218126122
-    second: GreatSwordBlock_01
+    second: Great Sword Block_01
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -41,7 +41,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: GreatSwordBlock_01
+      name: Great Sword Block_01
       takeName: mixamo.com
       internalID: 0
       firstFrame: 0
