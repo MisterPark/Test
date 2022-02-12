@@ -11,16 +11,22 @@ public class Spawner : MonoBehaviour
     float delay = 0.1f;
     float tick = 0;
     [SerializeField] int limitCount;
-
+    [SerializeField] int spawnCount;
+    [SerializeField] bool isDisposable;
     void Start()
-    {
-        
+    {      
     }
 
     public void Spawn()
     {
         if (spawnList.Count >= limitCount)
+        {
+            return; 
+        }      
+        if(isDisposable&& spawnCount >= limitCount)
+        {
             return;
+        }
         float distance = Random.Range(0, radius);
         float angle = Random.Range(0, 360);
         Quaternion quaternion = Quaternion.Euler(0, angle, 0);
@@ -36,13 +42,6 @@ public class Spawner : MonoBehaviour
             Debug.LogError("can't find GameObject");
             return; 
         }
-        //Monster monster= gameObject.GetComponent<Monster>();
-        //if (monster==null)
-        //{
-        //    Debug.LogError("can't find Monster");
-        //    return;
-        //}
-        //monster.Spawner = this;
         MonsterController monsterController = gameObject.GetComponent<MonsterController>();
         if (monsterController == null)
         {
@@ -52,26 +51,28 @@ public class Spawner : MonoBehaviour
         monsterController.spawner = this;
 
         gameObject.transform.position = randPos;
-        
+
+        if (isDisposable)
+        {
+            spawnCount++; 
+        }
+
         spawnList.Add(gameObject);
     }
-
-    
-    // Update is called once per frame
     void Update()
     {
         tick+=Time.deltaTime;
+
         if(tick >= delay)
         {
             tick = 0;
             Spawn(); 
         }
     }
-
     public void Remove(GameObject gameObject)
     {
         ObjectPool.Instance.Free(gameObject);
         spawnList.Remove(gameObject);
-
     }
+
 }
