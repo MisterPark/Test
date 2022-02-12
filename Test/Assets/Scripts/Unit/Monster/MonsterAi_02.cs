@@ -6,7 +6,7 @@ public class MonsterAi_02 : MonsterController
 {
 
     [SerializeField] List<GameObject> projectiles;
-    List<GameObject> projectileList;
+    private List<GameObject> projectileList = new List<GameObject>();
     // Start is called before the first frame update
     protected void OnEnable()
     {
@@ -51,6 +51,7 @@ public class MonsterAi_02 : MonsterController
             }
             projectile.shooter = this;
             //projectile.target = target;
+            projectile.target = GameObject.Find("Player");
             gameObject.transform.position = new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z);
             
             gameObject.transform.forward = transform.forward;
