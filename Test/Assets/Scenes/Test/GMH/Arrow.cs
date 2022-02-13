@@ -13,8 +13,9 @@ public class Arrow : MonoBehaviour
     float speed;
     float delay;
     float tick;
-    float yspeed=1f;
+    float yspeed=20f;
     public float flightTime = 5f;
+    bool Activility = false;
 
     private Rigidbody projectile;
 
@@ -37,9 +38,10 @@ public class Arrow : MonoBehaviour
         tick += Time.deltaTime;
         if(tick>delay)
         {
+            Activility = false;
             gameObject.SetActive(false);
             tick = 0;
-            yspeed = 1f;
+            yspeed = 20f;
         }
     }
 
@@ -49,12 +51,17 @@ public class Arrow : MonoBehaviour
 
     void Move()
     {
-        float gravity = 4f;
+        float gravity = 40f;
         Vector3 direction = targetPosition - transform.position;
-        float parabolaTime = direction.magnitude / (speed * Time.deltaTime);
 
+        if (!Activility)
+        {
+            float parabolaTime = direction.magnitude / speed;
+            yspeed *= parabolaTime;
+            Activility = true;
+        }
         yspeed = yspeed - gravity * Time.deltaTime;
-        float Tempy = yspeed * Time.deltaTime * parabolaTime;
+        float Tempy = yspeed * Time.deltaTime;
         direction.y = 0;
         direction.Normalize();
         transform.position += direction * speed * Time.deltaTime + new Vector3(0f, Tempy, 0f);
