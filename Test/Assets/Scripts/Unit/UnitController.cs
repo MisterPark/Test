@@ -5,6 +5,7 @@ using UnityEngine;
 public class UnitController : MonoBehaviour
 {
     public enum AniMotion { Enter, Update, Exit }
+    public enum WeaponClass { BareHands, GreatSword }
     // Start is called before the first frame update
     public UnitStat stats { get; set; }
     //private Rigidbody rigidbody;
@@ -36,6 +37,17 @@ public class UnitController : MonoBehaviour
         if (theta <= sightAngle) return true;
         else return false;
 
+    }
+    /// <summary>
+    /// 대상이 Idle 상태여야 함. (처음엔 그냥 Idle 상태)
+    /// </summary>
+    protected void WeaponChange(Animator _animator, WeaponClass _weaponClass)
+    {
+        if (_animator.GetBool("Idle"))
+        {
+            _animator.SetInteger("WeaponClass", (int)_weaponClass);
+            _animator.SetBool("WeaponChange", true);
+        }
     }
 
     /// <summary>

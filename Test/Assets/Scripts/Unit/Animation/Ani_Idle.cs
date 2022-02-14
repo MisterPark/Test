@@ -12,6 +12,7 @@ public class Ani_Idle : StateMachineBehaviour
         animator.SetBool("MovePossible", true);
         animator.SetInteger("Attack", -1);
         animator.SetBool("SkillAction", false);
+        animator.SetBool("Idle", true);
 
         if (unitController == null)
             unitController = animator.transform.parent.parent.GetComponent<UnitController>();
@@ -28,6 +29,7 @@ public class Ani_Idle : StateMachineBehaviour
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         unitController.Ani_Idle(UnitController.AniMotion.Exit, animator);
+        animator.SetBool("Idle", false);
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()

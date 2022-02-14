@@ -44,10 +44,10 @@ ModelImporter:
       name: Bash
       takeName: mixamo.com
       internalID: 0
-      firstFrame: 0
-      lastFrame: 178
+      firstFrame: 48
+      lastFrame: 208
       wrapMode: 0
-      orientationOffsetY: 0
+      orientationOffsetY: 310
       level: 0
       cycleOffset: 0
       loop: 0

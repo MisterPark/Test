@@ -16,6 +16,7 @@ public class PlayerController : UnitController
         animator = (transform.Find("Mesh").gameObject).transform.GetChild(0).gameObject.GetComponent<Animator>();
         basicMesh = (transform.Find("Mesh").gameObject).transform.GetChild(0).gameObject;
         ragDollMesh = (transform.Find("Mesh").gameObject).transform.GetChild(1).gameObject;
+        WeaponChange(animator, WeaponClass.GreatSword);
     }
 
     // Update is called once per frame
@@ -50,7 +51,7 @@ public class PlayerController : UnitController
     }
     void Jump()
     {
-        if (!animator.GetBool("MovePossible"))
+        if (!animator.GetBool("MovePossible") || animator.GetBool("SkillAction"))
             return;
 
         if (Input.GetKeyDown(KeyCode.Space))
@@ -66,13 +67,12 @@ public class PlayerController : UnitController
 
     void Idle()
     {
-        if (!aniStateInfo.IsName("Idle") && animator.GetBool("MovePossible"))
-            return;
+
     }
 
     void Move()
     {
-        if (!animator.GetBool("MovePossible"))
+        if (!animator.GetBool("MovePossible") || animator.GetBool("SkillAction"))
             return;
 
         Run();
@@ -118,7 +118,7 @@ public class PlayerController : UnitController
 
     void Run()
     {
-        if (Input.GetKey(KeyCode.LeftShift) && aniStateInfo.IsName("Walk"))
+        if (Input.GetKey(KeyCode.LeftShift) && animator.GetBool("Walk"))
         {
             if (!animator.GetBool("Run"))
             {
@@ -190,7 +190,7 @@ public class PlayerController : UnitController
         {
             stats.Mp -= 10;
         }
-        if (Input.GetKeyDown(KeyCode.O))
+        if (Input.GetKeyDown(KeyCode.I))
         {
             //부활
             if (animator.GetBool("IsDead"))
@@ -199,7 +199,7 @@ public class PlayerController : UnitController
                 stats.Hp = stats.MaxHp;
             }
         }
-        if (Input.GetKey(KeyCode.N))
+        if (Input.GetKeyDown(KeyCode.O))
         {
             CopyCharacterTransformToRagdoll(basicMesh.transform, ragDollMesh.transform);
             basicMesh.SetActive(false);
@@ -207,11 +207,19 @@ public class PlayerController : UnitController
             Rigidbody rigid = GetComponent<Rigidbody>();
             rigid.AddForce(new Vector3(0f, 0f, 20f), ForceMode.Impulse);
         }
-        else if (Input.GetKey(KeyCode.M))
+        else if (Input.GetKeyDown(KeyCode.P))
         {
             basicMesh.SetActive(true);
             ragDollMesh.SetActive(false);
         }
+        if(Input.GetKeyDown(KeyCode.L))
+        {
+            if(animator.GetInteger("WeaponClass") == (int)WeaponClass.BareHands)
+                WeaponChange(animator, WeaponClass.GreatSword);
+            else
+                WeaponChange(animator, WeaponClass.BareHands);
+        }
+
         //TODO 레그돌, 애니메이션 레이어로 무기종류 등ㄷ으등ㄹ등
     }
 
